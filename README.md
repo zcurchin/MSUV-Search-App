@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # [HTML5 Boilerplate](http://html5boilerplate.com)
 
 HTML5 Boilerplate is a professional front-end template for building fast,
@@ -61,3 +62,9 @@ you want to write about your project.
 Anyone and everyone is welcome to
 [contribute](/h5bp/html5-boilerplate/blob/master/doc/contribute.md). Hundreds
 of developers have helped make the HTML5 Boilerplate what it is today.
+=======
+MSUV-Search-App
+===============
+
+HTML, CSS, JS, PHP search application
+>>>>>>> 02eb7a3ae893f530217aa1141637af9f725b6b67
