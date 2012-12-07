@@ -33,6 +33,7 @@ $(function(){
 });
 
 // Get searchbox form from server
+// Poziva se na landing page-u
 function getSearchbox() {
 	$('#searchbox').load('searchbox.html', function(){
 		$('select').selectbox();
@@ -194,14 +195,14 @@ function handleSearchResoults() {
 //**************** AJAX *****************//
 // After you are done with ajax, pass this function (handleSearchResoults) as callback 
 function showSearchResoults() {
+	/* Ovde ide ajax poziv ali mora da ostane callback 'handleSearchResoults' */
 	scene1.load('resoults.html', handleSearchResoults);
 }
 
 $('#search-btn').live('click', function() {	
-	if (appContainer.hasClass('landing-size')) {
+	if (appContainer.hasClass('landing-size')){
 		animateFullSize();
 		scene1.css({'display' : 'block'}).addClass('visible');
-
 		setTimeout(showSearchResoults,1200);
 
 	} else {
@@ -266,6 +267,7 @@ $('.resoults').live('click', function() {
 		
 		//**************** AJAX *****************//
 		// After you are done with ajax, pass this function (handleDetails) as callback
+		// Ovde pozivam print detalja za odabrani rad
 		scene2.load('details.html', handleDetails);		
 	}
 
