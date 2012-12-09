@@ -32,10 +32,28 @@ $(function(){
 	});
 });
 
-// Get searchbox form from server
-// Poziva se na landing page-u
 function getSearchbox() {
-	$('#searchbox').load('searchbox.html', function(){
+
+	$.ajax({
+	  url: 'libs/ajax.php',
+	  type: 'POST',
+	  data: {'fn':'setSearchbox'},
+	  beforeSend: function(){},
+	  success: function(data){
+	  	$('#searchbox').html(data);
+	  	$('select').selectbox();
+	  	console.log('AJAX searchbox SET.');
+    }
+	});
+
+}
+
+getSearchbox();
+	
+/* Please, sredi ovaj keyword placeholder da radi :( */
+
+/* function getSearchbox() {
+		$('#searchbox').load('searchbox.html', function(){
 		$('select').selectbox();
 		$('#keyword').focus(function () {
 			if ($(this).val() == $(this).attr("title")) {
@@ -47,9 +65,8 @@ function getSearchbox() {
 			}
 		});
 	});
-}
 
-getSearchbox();
+}*/
 
 // Store all sizes for app containers
 var windowWidth,
@@ -192,11 +209,36 @@ function handleSearchResoults() {
 	});	
 }
 
-//**************** AJAX *****************//
+//**************** AJAX ****************/
 // After you are done with ajax, pass this function (handleSearchResoults) as callback 
 function showSearchResoults() {
-	/* Ovde ide ajax poziv ali mora da ostane callback 'handleSearchResoults' */
-	scene1.load('resoults.html', handleSearchResoults);
+
+	var upit = [];
+	src_autor   = $('#sel_autor option:selected').selectbox();
+	src_godina  = $('#sel_godina option:selected').selectbox();
+	src_zbirka  = $('#sel_zbirka option:selected').selectbox();
+	src_tehnika = $('#sel_tehnika option:selected').selectbox();
+	src_medij   = $('#sel_medij option:selected').selectbox();
+	src_keyword = $('#keyword');
+
+	src_autor.val()   != 0 ? upit.push(src_autor.html())   : upit.push('');
+	src_godina.val()  != 0 ? upit.push(src_godina.html())  : upit.push('');
+	src_zbirka.val()  != 0 ? upit.push(src_zbirka.html())  : upit.push('');
+	src_tehnika.val() != 0 ? upit.push(src_tehnika.html()) : upit.push('');
+	src_medij.val()   != 0 ? upit.push(src_medij.html())   : upit.push('');
+	src_keyword.val() != 'Naziv dela'? upit.push(src_keyword.val())  : upit.push('');
+
+	$.ajax({
+	  url: 'libs/ajax.php',
+	  type: 'POST',
+	  data: {'fn':'getResults','upit':upit},
+	  beforeSend: function(){},
+	  success: function(data){
+	  	console.log(data);
+		scene1.load('resoults.html', handleSearchResoults); /* Ovo ostaje, za sada. */
+    }
+	});
+
 }
 
 $('#search-btn').live('click', function() {	
@@ -268,7 +310,7 @@ $('.resoults').live('click', function() {
 		//**************** AJAX *****************//
 		// After you are done with ajax, pass this function (handleDetails) as callback
 		// Ovde pozivam print detalja za odabrani rad
-		scene2.load('details.html', handleDetails);		
+		scene2.load('details.html', handleDetails);
 	}
 
 	scene1.animate({
@@ -295,7 +337,7 @@ backButton.click(function() {
 
 $(document).ready(function(){
 	getSizes();
-	setLandingSize();	
+	setLandingSize();
 });
 
 $(window).resize(function() {
