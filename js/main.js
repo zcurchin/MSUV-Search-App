@@ -296,6 +296,7 @@ function handleDetails(){
 	    	detailsOuter.animate({'opacity' : '1'}, function(){			    		
 	    		backButton.show();
 	    		closeButton.hide();
+	    		Shadowbox.init();
 	    		});			    	
 	    },200);
 	});
