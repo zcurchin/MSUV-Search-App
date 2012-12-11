@@ -14,5 +14,4 @@
 	);
 
 	$db -> exec("SET CHARACTER SET utf8");
-
 ?>

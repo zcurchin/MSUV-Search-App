@@ -1,3 +1,6 @@
+
+
+
 // Slider
 $(function(){
 	$('#slides').slides({
@@ -12,7 +15,7 @@ $(function(){
 			},100);
 			if (window.console && console.log) {
 				// example return of current slide number
-				console.log('animationStart on slide: ', current);
+				//console.log('animationStart on slide: ', current);
 			};
 		},
 		animationComplete: function(current){
@@ -21,7 +24,7 @@ $(function(){
 			},200);
 			if (window.console && console.log) {
 				// example return of current slide number
-				console.log('animationComplete on slide: ', current);
+				//console.log('animationComplete on slide: ', current);
 			};
 		},
 		slidesLoaded: function() {
@@ -33,7 +36,6 @@ $(function(){
 });
 
 function getSearchbox() {
-
 	$.ajax({
 	  url: 'libs/ajax.php',
 	  type: 'POST',
@@ -41,11 +43,15 @@ function getSearchbox() {
 	  beforeSend: function(){},
 	  success: function(data){
 	  	$('#searchbox').html(data);
-	  	$('select').selectbox();
+	  	$("select").selectbox({
+			onChange: function (val, inst) {
+				prebrojRezultate();
+			},
+		});
+
 	  	console.log('AJAX searchbox SET.');
     }
 	});
-
 }
 
 getSearchbox();
@@ -209,36 +215,19 @@ function handleSearchResoults() {
 	});	
 }
 
-//**************** AJAX ****************/
-// After you are done with ajax, pass this function (handleSearchResoults) as callback 
-function showSearchResoults() {
-
-	var upit = [];
-	src_autor   = $('#sel_autor option:selected').selectbox();
-	src_godina  = $('#sel_godina option:selected').selectbox();
-	src_zbirka  = $('#sel_zbirka option:selected').selectbox();
-	src_tehnika = $('#sel_tehnika option:selected').selectbox();
-	src_medij   = $('#sel_medij option:selected').selectbox();
-	src_keyword = $('#keyword');
-
-	src_autor.val()   != 0 ? upit.push(src_autor.html())   : upit.push('');
-	src_godina.val()  != 0 ? upit.push(src_godina.html())  : upit.push('');
-	src_zbirka.val()  != 0 ? upit.push(src_zbirka.html())  : upit.push('');
-	src_tehnika.val() != 0 ? upit.push(src_tehnika.html()) : upit.push('');
-	src_medij.val()   != 0 ? upit.push(src_medij.html())   : upit.push('');
-	src_keyword.val() != 'Naziv dela'? upit.push(src_keyword.val())  : upit.push('');
-
+// After you are done with ajax, pass this 
+// function (handleSearchResoults) as callback 
+function showSearchResoults(){
 	$.ajax({
 	  url: 'libs/ajax.php',
 	  type: 'POST',
-	  data: {'fn':'getResults','upit':upit},
+	  data: {'fn':'getResults','upit':pribaviUpit()},
 	  beforeSend: function(){},
 	  success: function(data){
-	  	console.log(data);
-		scene1.load('resoults.html', handleSearchResoults); /* Ovo ostaje, za sada. */
+		scene1.html(data);
+		handleSearchResoults();		
     }
 	});
-
 }
 
 $('#search-btn').live('click', function() {	
@@ -304,14 +293,28 @@ function handleDetails(){
 
 // Show details
 $('.resoults').live('click', function() {
+
+	id = $(this).attr('id');
+
 	function loadDetails(){		
 		appContent.spin();
 		scene2.css({'display' : 'block'});
 		
-		//**************** AJAX *****************//
 		// After you are done with ajax, pass this function (handleDetails) as callback
 		// Ovde pozivam print detalja za odabrani rad
-		scene2.load('details.html', handleDetails);
+		
+		$.ajax({
+		url: 'libs/ajax.php',
+		type: 'POST',
+		data: {'fn':'showDetails','id':id},
+		beforeSend: function(){},
+		success: function(data){
+			scene2.html(data);
+			window.location.hash = id;
+			handleDetails();
+		}
+		});
+
 	}
 
 	scene1.animate({
@@ -322,6 +325,10 @@ $('.resoults').live('click', function() {
 
 // Slide back resoults scene (back button)
 backButton.click(function() {	
+	
+	window.location.hash = '';	
+	window.history.pushState("", document.title, window.location.pathname);
+
 	scene2.fadeOut(300, function(){
 		scene1.animate({
 		'left' : 0
@@ -358,4 +365,58 @@ $('#sponsor').toggle(function() {
 	});
 	
 });
+
+function pribaviUpit(){
+	var upit = [];
+	src_autor   = $('#sel_autor option:selected').selectbox();
+	src_godina  = $('#sel_godina option:selected').selectbox();
+	src_zbirka  = $('#sel_zbirka option:selected').selectbox();
+	src_tehnika = $('#sel_tehnika option:selected').selectbox();
+	src_medij   = $('#sel_medij option:selected').selectbox();
+	src_keyword = $('#keyword');
+	src_autor.val()   != 0 ? upit.push(src_autor.html())   : upit.push('');
+	src_godina.val()  != 0 ? upit.push(src_godina.html())  : upit.push('');
+	src_zbirka.val()  != 0 ? upit.push(src_zbirka.html())  : upit.push('');
+	src_tehnika.val() != 0 ? upit.push(src_tehnika.html()) : upit.push('');
+	src_medij.val()   != 0 ? upit.push(src_medij.html())   : upit.push('');
+	src_keyword.val() != 'Naziv dela'? upit.push(src_keyword.val())  : upit.push('');
+	return upit;
+}
+
+function prebrojRezultate(){
+
+	upit = pribaviUpit();
+
+	if( src_autor.val() > 0   ||
+		src_godina.val() > 0  ||
+		src_zbirka.val() > 0  ||
+		src_tehnika.val() > 0 ||
+		src_medij.val() > 0   ||
+		src_keyword.val()     != 'Naziv dela'
+	){
+		$.ajax({
+		  url: 'libs/ajax.php',
+		  type: 'POST',
+		  data: {'fn':'countResults','upit':upit},
+		  beforeSend: function(){},
+		  success: function(data){
+		  	$('#live-score').text(data);
+		}
+		});
+	}
+	else{
+		$.ajax({
+		  url: 'libs/ajax.php',
+		  type: 'POST',
+		  data: {'fn':'countAll'},
+		  beforeSend: function(){},
+		  success: function(data){
+		  	$('#live-score').text(data);
+		}
+		});
+	}
+
+}	
+/*
+*/
 

@@ -8,6 +8,9 @@ $fn = $_POST['fn'];
 if(isset($_POST['fn'])){
     if ($fn == 'setSearchbox'){setSearchbox();}
     if ($fn == 'getResults')  {getResults();}
+    if ($fn == 'countResults')  {countResults();}
+    if ($fn == 'countAll')  {countAll();}
+    if ($fn == 'showDetails')  {showDetails();}
 }
 
 function setSearchbox(){
@@ -24,6 +27,10 @@ function setSearchbox(){
 	/* Naslovi - SRPSKI */
     $naslovi_sr = array('Autor','Godina','Zbirka','Tehnika','Medij', 'Naziv dela', 'Pronađeno');
     $rezultati['naslovi'] = $naslovi_sr;
+    
+    /* Ukupno */
+    $query = $db->query("SELECT * FROM baza");
+    $ukupno = $query->rowCount();
 
 	/* Autori */
     $query = $db->query("SELECT DISTINCT autor FROM baza ORDER BY autor ASC");
@@ -107,7 +114,7 @@ function setSearchbox(){
     echo '</select>';
 
     echo '<div id="live-search">
-        <span id="live-label">'. $rezultati['naslovi'][6] .'</span><span id="live-score">16</span>
+        <span id="live-label">'. $rezultati['naslovi'][6] .'</span><span id="live-score">'. $ukupno .'</span>
     </div>
 
     <div id="search-btn">
@@ -143,9 +150,157 @@ function getResults(){
                     ";
 
         $query = $db->query($upit_sql);
+        $pogodaka = $query->rowCount();
         
-        echo 'Broj pronađenih rezultata: '. $query->rowCount();
+        if($pogodaka > 0){
+
+            function idToFname($id){
+                do    { $id = '0' . $id; } 
+                while (strlen($id) < 6);       
+                return $id;
+            }
+
+            echo '<div id="search-resoults-outer"><div id="search-resoults">';
+
+            while ($row=$query->fetch(PDO::FETCH_ASSOC)){
+               echo '     
+                <div class="resoults" id="'. idToFname($row['id']) .'">
+                <div class="thumb-background">                
+                    <span class="thumb-icon"></span>
+                    <img src="art/thumbnail/'. idToFname($row['id']) .'.jpg">
+                </div>
+                <span class="author">'. $row['autor'] .'</span>
+                <span class="title">'. $row['naziv'] .'</span>
+                <span class="year">'. $row['godina'] .'</span>
+                </div>';
+            }
+
+            echo '</div></div>';
+
+        }
     }
+}
+
+function countResults(){
+
+    include('config.php');
+
+    if(isset($_POST['upit'])){
+
+        $upit    = $_POST['upit'];
+        $autor   = $upit[0];
+        $godina  = $upit[1];
+        $zbirka  = $upit[2];
+        $tehnika = $upit[3];
+        $medij   = $upit[4];
+        $keyword = $upit[5];
+
+        $upit_sql ="SELECT id FROM baza 
+                    LEFT JOIN zbirke ON baza.zbirka=zbirke.zbr_id 
+                    LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
+                    LEFT JOIN mediji ON baza.medij=mediji.med_id 
+                    WHERE autor LIKE '%".$autor."%' AND 
+                          godina LIKE '%".$godina."%' AND
+                          zbr_naziv_sr LIKE '%".$zbirka."%' AND 
+                          teh_naziv_sr LIKE '%".$tehnika."%' AND 
+                          med_naziv_sr LIKE '%".$medij."%' AND 
+                          naziv LIKE '%".$keyword."%' 
+                    ";
+
+        $query = $db->query($upit_sql);
+        echo $query->rowCount();
+    }
+}
+
+function countAll(){
+    include('config.php');
+    $upit_sql ="SELECT * FROM baza";
+    $query = $db->query($upit_sql);
+    echo $query->rowCount();
+}
+
+function showDetails(){
+
+    include('config.php');
+
+    if(isset($_POST['id'])){
+
+        $id = $_POST['id'];
+        $upit_sql ="SELECT * FROM baza 
+                    LEFT JOIN zbirke ON baza.zbirka=zbirke.zbr_id 
+                    LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
+                    LEFT JOIN mediji ON baza.medij=mediji.med_id 
+                    WHERE id='". $id ."'";
+
+        $query = $db->query($upit_sql);
+        $row=$query->fetch(PDO::FETCH_ASSOC);
+        $medij=$row['medij'];
+
+        echo '<div id="details-outer"><div id="details">';
+         
+        echo '<a rel="shadowbox" href="art/master/'. $id .'.jpg"><img src="art/details/'. $id .'.jpg"></a>
+                <div id="info-box">
+                <div class="info-row">
+                    <span class="label">Autor:</span>
+                    <span class="info">'. $row['autor'] .'
+                </div>
+                <div class="info-row">
+                    <span class="label">Naziv dela:</span>
+                    <span class="info">'. $row['naziv'] .'
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">Godina:</span>
+                    <span class="info">'.$row['godina'].'.</span>
+                </div>';
+                
+                if($medij==1){
+                //grafika
+                echo'<div class="info-row">
+                        <span class="label">Dimenzije lista:</span>
+                        <span class="info">'. $row['graf_dim_l'] .' cm</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Dimenzije otiska:</span>
+                        <span class="info">'. $row['graf_dim_o'] .' cm</span>
+                    </div>';
+                }elseif($medij==2 || $medij==3 || $medij==4 || $medij==5){ 
+                // slika, skulptura, crtež, fotografija
+                    echo'<div class="info-row">
+                        <span class="label">Dimenzije:</span>
+                        <span class="info">'. $row['dim'] .' cm</span>
+                    </div>';
+                }
+                elseif($medij==6){
+                // video
+                    echo'<div class="info-row">
+                        <span class="label">Dužina (hh:mm:ss):</span>
+                        <span class="info">'. $row['duzina'] .'</span>
+                    </div>';
+                }
+
+                echo'              
+                <div class="info-row">
+                    <span class="label">Zbirka:</span>
+                    <span class="info">'. $row['zbr_naziv_sr'] .'</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">Tehnika:</span>
+                    <span class="info">'. $row['teh_naziv_sr'] .'</span>
+                </div>
+                
+                <div class="info-row last-row">
+                    <span class="label">Medij:</span>
+                    <span class="info">'. ucfirst($row['med_naziv_sr']) .'</span>
+                </div>
+            </div>';
+
+
+        echo '</div></div>';
+
+    }
+
 }
 
 ?>
