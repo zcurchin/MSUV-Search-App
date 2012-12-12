@@ -238,7 +238,7 @@ function showDetails(){
 
         echo '<div id="details-outer"><div id="details">';
          
-        echo '<a rel="shadowbox" href="art/master/'. $id .'.jpg"><img src="art/details/'. $id .'.jpg"></a>
+        echo '<a rel="shadowbox['.$id.']" href="art/master/'. $id .'.jpg"><img src="art/details/'. $id .'.jpg"></a>
                 <div id="info-box">
                 <div class="info-row">
                     <span class="label">Autor:</span>

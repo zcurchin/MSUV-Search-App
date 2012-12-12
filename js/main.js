@@ -49,7 +49,6 @@ function getSearchbox() {
 			},
 		});
 
-	  	console.log('AJAX searchbox SET.');
     }
 	});
 }
@@ -286,6 +285,7 @@ function handleDetails(){
 	    		backButton.show();
 	    		closeButton.hide();
 	    		Shadowbox.init();
+	    		Shadowbox.setup();
 	    		});			    	
 	    },200);
 	});
@@ -324,8 +324,8 @@ $('.resoults').live('click', function() {
 });
 
 // Slide back resoults scene (back button)
-backButton.click(function() {	
-	
+backButton.click(function() {		
+
 	window.location.hash = '';	
 	window.history.pushState("", document.title, window.location.pathname);
 
