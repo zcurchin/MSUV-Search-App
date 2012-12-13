@@ -238,12 +238,17 @@ $('#search-btn').live('click', function() {
 	} else {
 		// We are on resoults scene
 		if (scene1.hasClass('visible')) {
+			var	resoultsOuter = $('#search-resoults-outer');
+			resoultsOuter.animate({'opacity' : 0});
+			appContent.spin();
 			showSearchResoults();
+
 		// We are on details scene
 		} else {
 			var	searchResoults = $('#search-resoults');
 			searchResoults.remove();
 			scene2.fadeOut(300, function(){			
+			appContent.spin();
 			scene1.animate({
 				'left' : '0px'
 				}, function(){
@@ -416,7 +421,24 @@ function prebrojRezultate(){
 		});
 	}
 
-}	
+}
+
+$('#lang-call').click(function(){
+	$('#lang-menu').toggleClass('on');
+});
+
+$('.lang-option').click(function(){
+	$('#lang-menu').toggleClass('on');
+});
+
+
+
+
+
+
+
+
+
 /*
 */
 
