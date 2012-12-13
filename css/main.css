@@ -595,7 +595,7 @@ input, select {
 
 #more-images {
     width: 100%;
-    margin: 10px 0;
+    margin-bottom: 10px;
     float: left;
 }
 
@@ -605,7 +605,7 @@ input, select {
     overflow: hidden;
     display: block;
     float: left;
-    margin-right: 10px;
+    margin: 10px 10px 0 0 ;
     border: 1px solid #efefef;
 }
 
