@@ -130,7 +130,7 @@ body {
     width: 40px;
     height: 40px;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 990;
     background: url(../img/control-btns.png) 0 0 no-repeat;
     display: none;
 }
@@ -577,11 +577,49 @@ input, select {
     margin: 1%;
 }
 
-#details img {
-    width: 45%;
-    height: auto;
+#images-box {
+    width: 44%;
+    height: 100%;
     float: left;
 }
+
+#images-box a.feat-img {
+    display: block;
+    float: left;
+    border: 1px solid #efefef;
+}
+
+#images-box a.feat-img img {
+    width: 100%;
+}
+
+#more-images {
+    width: 100%;
+    margin: 10px 0;
+    float: left;
+}
+
+#images-box a.extra-img {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #efefef;
+}
+
+#images-box .extra-img img {
+    width: 150%;
+    height: auto;
+}
+
+#images-box a:hover {
+    border: 1px solid #777;
+    opacity: 0.8;
+}
+
+
 
 /* Info
 ----------------------------*/

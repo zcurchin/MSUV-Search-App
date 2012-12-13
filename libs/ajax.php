@@ -236,9 +236,14 @@ function showDetails(){
         $row=$query->fetch(PDO::FETCH_ASSOC);
         $medij=$row['medij'];
 
-        echo '<div id="details-outer"><div id="details">';
+        echo '<div id="details-outer"><div id="details"><div id="images-box">';
          
-        echo '<a rel="shadowbox['.$id.']" href="art/master/'. $id .'.jpg"><img src="art/details/'. $id .'.jpg"></a>
+        echo '<a class="feat-img" rel="shadowbox['.$id.']" href="art/master/'. $id .'.jpg"><img src="art/details/'. $id .'.jpg"></a>
+                <div id="more-images">
+                <a class="extra-img" href="art/details/000004.jpg"><img src="art/thumbnail/000004.jpg"></a>
+                <a class="extra-img" href="art/details/000010.jpg"><img src="art/thumbnail/000010.jpg"></a>
+                <a class="extra-img" href="art/details/000015.jpg"><img src="art/thumbnail/000015.jpg"></a>
+                </div></div>
                 <div id="info-box">
                 <div class="info-row">
                     <span class="label">Autor:</span>

@@ -289,7 +289,7 @@ function handleDetails(){
 	    	detailsOuter.animate({'opacity' : '1'}, function(){			    		
 	    		backButton.show();
 	    		closeButton.hide();
-	    		Shadowbox.init();
+	    		Shadowbox.init({overlayOpacity : 0.9});
 	    		Shadowbox.setup();
 	    		});			    	
 	    },200);

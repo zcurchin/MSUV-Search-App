@@ -1061,7 +1061,7 @@ function handler(event) {
       var ulHeight = $("#sbOptions_" + inst.uid + " " + "a").length;
       var setHeight;
 
-      if((ulHeight * 30) > diff){
+      if((ulHeight * 36) > diff){
         setHeight = (diff - height) + "px";
       }else {
         setHeight = "auto";
