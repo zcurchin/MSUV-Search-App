@@ -1,6 +1,4 @@
 
-
-
 // Slider
 $(function(){
 	$('#slides').slides({
@@ -36,10 +34,13 @@ $(function(){
 });
 
 function getSearchbox() {
+	
+	jezik = document.cookie.split('=');
+
 	$.ajax({
 	  url: 'libs/ajax.php',
 	  type: 'POST',
-	  data: {'fn':'setSearchbox'},
+	  data: {'fn':'setSearchbox','lang':jezik[1]},
 	  beforeSend: function(){},
 	  success: function(data){
 	  	$('#searchbox').html(data);
@@ -47,6 +48,20 @@ function getSearchbox() {
 			onChange: function (val, inst) {
 				prebrojRezultate();
 			},
+		});
+
+	  	$('#keyword').focus(function(){			
+			if($(this).val() == 'Title' || $(this).val() == 'Naziv dela'){
+				$(this).val('').css({'color':'#fff'});
+			}
+		});
+
+	   	$('#keyword').blur(function(){			
+			if($(this).val() == ''){
+				if(jezik[1] == 'sr'){ $(this).val('Naziv dela').css({'color':'#666'}); }
+				else if(jezik[1] == 'en'){ $(this).val('Title').css({'color':'#666'}); }
+				else if(jezik[1] == 'de'){ $(this).val('').css({'color':'#666'});}
+			}
 		});
 
     }
@@ -217,10 +232,13 @@ function handleSearchResoults() {
 // After you are done with ajax, pass this 
 // function (handleSearchResoults) as callback 
 function showSearchResoults(){
+	
+	jezik = document.cookie.split('=');
+	
 	$.ajax({
 	  url: 'libs/ajax.php',
 	  type: 'POST',
-	  data: {'fn':'getResults','upit':pribaviUpit()},
+	  data: {'fn':'getResults','upit':pribaviUpit(),'lang':jezik[1]},
 	  beforeSend: function(){},
 	  success: function(data){
 		scene1.html(data);
@@ -304,14 +322,12 @@ $('.resoults').live('click', function() {
 	function loadDetails(){		
 		appContent.spin();
 		scene2.css({'display' : 'block'});
-		
-		// After you are done with ajax, pass this function (handleDetails) as callback
-		// Ovde pozivam print detalja za odabrani rad
+		jezik = document.cookie.split('=');
 		
 		$.ajax({
 		url: 'libs/ajax.php',
 		type: 'POST',
-		data: {'fn':'showDetails','id':id},
+		data: {'fn':'showDetails','id':id,'lang':jezik[1]},
 		beforeSend: function(){},
 		success: function(data){
 			scene2.html(data);
@@ -349,6 +365,9 @@ backButton.click(function() {
 });
 
 $(document).ready(function(){
+	/* Keks za jezik :) */
+	jezik = document.cookie.split('=');
+	
 	getSizes();
 	setLandingSize();
 });
@@ -384,25 +403,31 @@ function pribaviUpit(){
 	src_zbirka.val()  != 0 ? upit.push(src_zbirka.html())  : upit.push('');
 	src_tehnika.val() != 0 ? upit.push(src_tehnika.html()) : upit.push('');
 	src_medij.val()   != 0 ? upit.push(src_medij.html())   : upit.push('');
-	src_keyword.val() != 'Naziv dela'? upit.push(src_keyword.val())  : upit.push('');
+	if(src_keyword.val() != 'Naziv dela' && src_keyword.val() != 'Title') {
+		upit.push(src_keyword.val());
+	}else{
+		upit.push('');
+	}
 	return upit;
 }
 
 function prebrojRezultate(){
 
 	upit = pribaviUpit();
+	jezik = document.cookie.split('=');
 
 	if( src_autor.val() > 0   ||
 		src_godina.val() > 0  ||
 		src_zbirka.val() > 0  ||
 		src_tehnika.val() > 0 ||
 		src_medij.val() > 0   ||
-		src_keyword.val()     != 'Naziv dela'
+		src_keyword.val()     != 'Naziv dela' &&
+		src_keyword.val()     != 'Title'
 	){
 		$.ajax({
 		  url: 'libs/ajax.php',
 		  type: 'POST',
-		  data: {'fn':'countResults','upit':upit},
+		  data: {'fn':'countResults','upit':upit,'lang':jezik[1]},
 		  beforeSend: function(){},
 		  success: function(data){
 		  	$('#live-score').text(data);
@@ -413,7 +438,7 @@ function prebrojRezultate(){
 		$.ajax({
 		  url: 'libs/ajax.php',
 		  type: 'POST',
-		  data: {'fn':'countAll'},
+		  data: {'fn':'countAll','lang':jezik[1]},
 		  beforeSend: function(){},
 		  success: function(data){
 		  	$('#live-score').text(data);
@@ -428,17 +453,15 @@ $('#lang-call').click(function(){
 });
 
 $('.lang-option').click(function(){
-	$('#lang-menu').toggleClass('on');
+	document.cookie = "lang="+ $(this).attr('title');
+	location.reload();
+	//$('#lang-menu').toggleClass('on');
 });
 
-
-
-
-
-
-
-
-
-/*
-*/
+/* Procedura za uklanjanje jezičkog menija na click izvan */
+$('#container').click(function() {
+	if( $('#lang-menu').is(':visible') == true ){
+		$('#lang-menu').toggleClass('on');
+	}
+});
 

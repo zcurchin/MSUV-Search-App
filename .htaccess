@@ -1,5 +1,5 @@
 Options +FollowSymlinks -MultiViews
 RewriteEngine on
 
-RewriteCond %{REQUEST_URI} ^(.*/)index\.html$ [NC]
+RewriteCond %{REQUEST_URI} ^(.*/)index\.php$ [NC]
 RewriteRule . %1 [R=301,NE,L]
