@@ -1,4 +1,7 @@
 <?php 
+	
+	$art_path = $_SERVER['DOCUMENT_ROOT'] . '/MSUV-Search-App/art';
+
 	$config['db'] = array(
 		'host' => 'digitalizacija.db.4078236.hostedresource.com',
 		'user' => 'digitalizacija',
@@ -23,6 +26,6 @@
 
 	$detalji = array(
 		'sr' => array('Autor','Naziv','Godina','Dimenzije','Dimenzije lista','Dimenzije otiska','Zbirka','Tehnika','Medij','Dužina (hh:mm:ss)'),
-		'en' => array('Author','Title','Year','Dimensions','Dimenzije lista','Dimenzije otiska','Collection','Technique','Medium','Duration (hh:mm:ss)')
+		'en' => array('Author','Title','Year','Dimensions','Paper dimensions','Print dimensions','Collection','Technique','Medium','Duration (hh:mm:ss)')
 	);
 ?>

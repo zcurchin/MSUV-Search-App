@@ -333,6 +333,16 @@ $('.resoults').live('click', function() {
 			scene2.html(data);
 			window.location.hash = id;
 			handleDetails();
+
+			$('#extra-img').click(function(){
+				stari_path = $('#leading-img').attr('alt');
+				novi_path = $(this).attr('alt');
+				$(this).attr('src','art/thumbnail/'+ stari_path).attr('alt',stari_path);
+				$('#leading-img').attr('src','art/details/' + novi_path).attr('alt',novi_path);
+				$('.feat-img').attr('href','art/master/'+novi_path);
+				Shadowbox.setup();
+			});
+
 		}
 		});
 
@@ -455,7 +465,6 @@ $('#lang-call').click(function(){
 $('.lang-option').click(function(){
 	document.cookie = "lang="+ $(this).attr('title');
 	location.reload();
-	//$('#lang-menu').toggleClass('on');
 });
 
 /* Procedura za uklanjanje jezičkog menija na click izvan */
@@ -465,3 +474,17 @@ $('#container').click(function() {
 	}
 });
 
+/* Onesposobi enter dugme na searchbox-u */
+function disableEnterKey(e){
+     var key;
+     if(window.event){
+		key = window.event.keyCode; // IE
+     }else{
+		key = e.which; // Firefox
+     }
+     if(key == 13){
+        return false;
+     }else{
+        return true;
+     }
+}

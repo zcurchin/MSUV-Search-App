@@ -3,3 +3,8 @@ RewriteEngine on
 
 RewriteCond %{REQUEST_URI} ^(.*/)index\.php$ [NC]
 RewriteRule . %1 [R=301,NE,L]
+
+AddType video/ogg .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm
+
