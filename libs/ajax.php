@@ -271,7 +271,6 @@ function showDetails(){
 		$rezultati['detalji'] = $detalji['de'];
 	}
 
-
 	if(isset($_POST['id'])){
 
 		$id = $_POST['id'];
@@ -279,7 +278,8 @@ function showDetails(){
 		LEFT JOIN zbirke ON baza.zbirka=zbirke.zbr_id 
 		LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
 		LEFT JOIN mediji ON baza.medij=mediji.med_id 
-		WHERE id='". $id ."'";
+		LEFT JOIN biografije ON baza.autor=biografije.bio_ime 
+		WHERE id='".$id."'";
 
 		$query = $db->query($upit_sql);
 		$row=$query->fetch(PDO::FETCH_ASSOC);
@@ -293,11 +293,9 @@ function showDetails(){
 			<video id="video" class="video-js vjs-default-skin" controls width="450" height="338" preload="auto" loop data-setup="{}">
 			<!-- <source type="video/mp4" src="art/video/'.$id.'.mp4">-->
 			<source type="video/webm" src="art/video/'.$id.'.webm">
-			</video>
-			';
-
+			</video>';
 		}
-		else{
+		else{	
 			echo '<div><a class="feat-img" rel="shadowbox" href="art/master/'. $id .'.jpg"><img id="leading-img" alt="'.$id.'.jpg" src="art/details/'. $id .'.jpg"></a></div>';
 			echo '<div id="more-images">';
 
@@ -314,9 +312,25 @@ function showDetails(){
 		<div id="info-box">
 		<div class="info-row">
 		<span class="label">'.$rezultati['detalji'][0].':</span>
-		<span class="info">'.$row['autor'].'
-		</div>
-		<div class="info-row">
+		<span class="info">'.$row['autor'].' </span>
+		</div>';
+
+		if(is_null($row['bio_'.$jezik]) == false){
+		
+		$biografija = $row['bio_'.$jezik];
+			
+			echo '
+			<div class="info-row">
+			<span class="label">'.$rezultati['detalji'][10].'</span>
+			<span class="info">
+				<div id="short-bio">'. substr($biografija, 0, 70). ' ...' .'</div>			
+				<div id="full-bio">'.  $biografija .'</div>
+				<img src="img/more.png" class="more-text" />
+			</span>
+			</div>';
+		}
+		
+		echo '<div class="info-row">
 		<span class="label">'.$rezultati['detalji'][1].':</span>
 		<span class="info">'.$row['naziv'].'
 		</div>
@@ -327,7 +341,7 @@ function showDetails(){
 		</div>';
 		
 		if($medij==1){
-				//grafika
+			//grafika
 			echo'<div class="info-row">
 			<span class="label">'.$rezultati['detalji'][4].':</span>
 			<span class="info">'. $row['graf_dim_l'] .' cm</span>
@@ -337,14 +351,14 @@ function showDetails(){
 			<span class="info">'. $row['graf_dim_o'] .' cm</span>
 			</div>';
 		}elseif($medij==2 || $medij==3 || $medij==4 || $medij==5){ 
-				// slika, skulptura, crtež, fotografija
+			// slika, skulptura, crtež, fotografija
 			echo'<div class="info-row">
 			<span class="label">'.$rezultati['detalji'][3].':</span>
 			<span class="info">'. $row['dim'] .' cm</span>
 			</div>';
 		}
 		elseif($medij==6){
-				// video
+			// video
 			echo'<div class="info-row">
 			<span class="label">'.$rezultati['detalji'][9].':</span>
 			<span class="info">'. $row['duzina'] .'</span>
@@ -367,6 +381,13 @@ function showDetails(){
 		<span class="info">'. ucfirst($row['med_naziv_'.$jezik.'']) .'</span>
 		</div>
 		</div>';
+		
+		if(is_null($row['bio_'.$jezik]) == false){
+			echo '<div id="biografija">
+					<p><h2>'.$row['autor'].'</h2></p>
+					<p>'.$row['bio_'.$jezik].'</p>
+				  </div>';
+		}
 
 		echo '</div></div>';
 

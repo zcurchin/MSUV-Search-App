@@ -1,5 +1,8 @@
 <?php 
 	
+	// Phpmyadmin
+	// https://p3nlmysqladm001.secureserver.net/dgrid50/115
+
 	$art_path = $_SERVER['DOCUMENT_ROOT'] . '/MSUV-Search-App/art';
 
 	$config['db'] = array(
@@ -25,7 +28,7 @@
 	);
 
 	$detalji = array(
-		'sr' => array('Autor','Naziv','Godina','Dimenzije','Dimenzije lista','Dimenzije otiska','Zbirka','Tehnika','Medij','Dužina (hh:mm:ss)'),
-		'en' => array('Author','Title','Year','Dimensions','Paper dimensions','Print dimensions','Collection','Technique','Medium','Duration (hh:mm:ss)')
+		'sr' => array('Autor','Naziv','Godina','Dimenzije','Dimenzije lista','Dimenzije otiska','Zbirka','Tehnika','Medij','Dužina (ss:mm:ss)','Biografija'),
+		'en' => array('Author','Title','Year','Dimensions','Paper dimensions','Print dimensions','Collection','Technique','Medium','Duration (hh:mm:ss)','Biography')
 	);
 ?>

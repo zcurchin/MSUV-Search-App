@@ -513,8 +513,7 @@ input, select {
     height: auto;  
 }
 
-#search-resoults img:hover  {
-    cursor: pointer;
+#search-resoults img:hover {
     opacity: 0.5;
 }
 
@@ -523,6 +522,7 @@ input, select {
     padding-bottom: 30px;
     margin: 3px;
     width: 180px;
+    cursor:pointer;
 }
 
 .resoults span {
@@ -878,4 +878,13 @@ input, select {
     h3 {
         page-break-after: avoid;
     }
+}
+
+/* CSS za biografiju na detaljima */
+#biografija{
+    display:none;
+}#full-bio{
+    display:none;
+}.more-text:hover{
+    cursor: pointer;
 }
