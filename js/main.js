@@ -343,8 +343,8 @@ $('.resoults').live('click', function() {
 				$('.feat-img').attr('href','art/master/' + novi_path);
 			});
 
-			/* Short bio / Full bio */
-			$('.more-text').click(function(){
+			/* Short bio / Full bio */	
+			$('#bio-label').click(function(){
 		        if($('#full-bio').is(':hidden')){
 		          $('#short-bio').hide();
 		          $('#full-bio').slideDown('fast', function(){
@@ -352,9 +352,9 @@ $('.resoults').live('click', function() {
 		          });
 		        }
 		        else{
-			      $('#short-bio').show();
 		          $('#full-bio').slideUp('fast', function(){
-			          $('.more-text').attr('src','img/more.png');
+					$('#short-bio').show();
+			        $('.more-text').attr('src','img/more.png');
 		          });
 		        }
 		    });

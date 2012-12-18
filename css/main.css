@@ -94,7 +94,9 @@ textarea {
    ========================================================================== */
 
 body {
-    background: url("../img/background.png");
+    /* background: url("../img/background.png"); */
+    background: #dfdfdf;
+
 }
 
 #app-container {
@@ -885,6 +887,9 @@ input, select {
     display:none;
 }#full-bio{
     display:none;
-}.more-text:hover{
+}.more-text{
+    margin-bottom:2px;
+}
+#bio-label,.more-text:hover{
     cursor: pointer;
 }
