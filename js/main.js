@@ -1,3 +1,19 @@
+// Cache elements selectors in global variables
+var appContainer = $('#app-container'),
+	appContainer_Ls = $('#app-container.landing-size'),
+	appContainer_Fs = $('#app-container.full-size'),
+	appContainer_shadow = $('#app-container-shadow'),
+	appContent = $('#app-content'),
+	searchbox = $('#searchbox'),
+	slider = $('#slides'),
+	scene1 = $('#scene-1'),
+	scene2 = $('#scene-2'),
+	closeButton = $('#close-btn'),
+	backButton = $('#back-btn'),
+	keyword = $('#keyword'),
+	langCall = $('#lang-call'),
+	langMenu = $('#lang-menu'),
+	jezik = document.cookie.split('=');
 
 // Slider
 $(function(){
@@ -34,18 +50,15 @@ $(function(){
 });
 
 function getSearchbox() {
-	
-	jezik = document.cookie.split('=');
 
 	$.ajax({
 	  url: 'libs/ajax.php',
 	  type: 'POST',
 	  data: {'fn':'setSearchbox','lang':jezik[1]},
-	  beforeSend: function(){},
 	  success: function(data){
-	  	$('#searchbox').html(data);
-	  	$("select").selectbox({
-			onChange: function (val, inst) {
+	  	searchbox.html(data);
+	  	$('select','#searchbox').selectbox({
+			onChange: function(val, inst){
 				prebrojRezultate();
 			},
 		});
@@ -67,26 +80,6 @@ function getSearchbox() {
     }
 	});
 }
-
-getSearchbox();
-	
-/* Please, sredi ovaj keyword placeholder da radi :( */
-
-/* function getSearchbox() {
-		$('#searchbox').load('searchbox.html', function(){
-		$('select').selectbox();
-		$('#keyword').focus(function () {
-			if ($(this).val() == $(this).attr("title")) {
-				$(this).val("").css({'color':'#fff'});
-			}
-		}).blur(function () {
-			if ($(this).val() == "") {
-				$(this).val($(this).attr("title")).css({'color':'#666'});
-			}
-		});
-	});
-
-}*/
 
 // Store all sizes for app containers
 var windowWidth,
@@ -110,24 +103,10 @@ function getSizes() {
 	appContainerHeight_Fs = (windowWidth > 1600) ? windowHeight - 150 : windowHeight - 80;
 	appContainer_marginTop_Ls = Math.round((windowHeight - appContainerHeight_Ls)/2); 
 	appContainer_marginTop_Fs = (windowWidth > 1600) ? 100 : 60;
-	searchboxWidth = $('#searchbox').width();
+	searchboxWidth = searchbox.width();
 	appContentWidth = (appContainerWidth_Fs - searchboxWidth) - 20;
 	appContentHeight = appContainerHeight_Fs -2;    
 };
-
-// Cache elements selectors in global variables
-var appContainer = $('#app-container'),
-	appContainer_Ls = $('#app-container.landing-size'),
-	appContainer_Fs = $('#app-container.full-size'),
-	appContainer_shadow = $('#app-container-shadow'),
-	appContent = $('#app-content'),
-	searchbox = $('#searchbox'),
-	slider = $('#slides'),
-	scene1 = $('#scene-1'),
-	scene2 = $('#scene-2'),
-	closeButton = $('#close-btn'),
-	backButton = $('#back-btn');
-
 
 // Set app container width and height on landing size
 function setLandingSize() {
@@ -233,13 +212,10 @@ function handleSearchResoults() {
 // function (handleSearchResoults) as callback 
 function showSearchResoults(){
 	
-	jezik = document.cookie.split('=');
-	
 	$.ajax({
 	  url: 'libs/ajax.php',
 	  type: 'POST',
 	  data: {'fn':'getResults','upit':pribaviUpit(),'lang':jezik[1]},
-	  beforeSend: function(){},
 	  success: function(data){
 		scene1.html(data);
 		handleSearchResoults();		
@@ -322,39 +298,42 @@ $('.resoults').live('click', function() {
 	function loadDetails(){		
 		appContent.spin();
 		scene2.css({'display' : 'block'});
-		jezik = document.cookie.split('=');
 		
 		$.ajax({
 		url: 'libs/ajax.php',
 		type: 'POST',
 		data: {'fn':'showDetails','id':id,'lang':jezik[1]},
-		beforeSend: function(){},
 		success: function(data){
-			scene2.html(data);
 			window.location.hash = id;
+			scene2.html(data);
 			handleDetails();
+
+			var fullbio = $('#full-bio'),
+				shortbio = $('#short-bio'),
+				leadingImg = $('#leading-img');
 
 			/* Skripta za dodatne slike */
 			$('#extra-img').click(function(){
-				stari_path = $('#leading-img').attr('alt');
+				stari_path = leadingImg.attr('alt');
 				novi_path = $(this).attr('alt');
 				$(this).attr('src','art/thumbnail/'+ stari_path).attr('alt',stari_path);
-				$('#leading-img').attr('src','art/details/' + novi_path).attr('alt',novi_path);
+				leadingImg.attr('src','art/details/' + novi_path).attr('alt',novi_path);
 				$('.feat-img').attr('href','art/master/' + novi_path);
 			});
 
+
 			/* Short bio / Full bio */	
 			$('#bio-label').click(function(){
-		        if($('#full-bio').is(':hidden')){
-		          $('#short-bio').hide();
-		          $('#full-bio').slideDown('fast', function(){
-		          	$('.more-text').attr('src','img/less.png');	          	
+		        if(fullbio.is(':hidden')){
+		          shortbio.hide();
+		          fullbio.slideDown('fast', function(){
+		          	$('#more-text').attr('src','img/less.png');	          	
 		          });
 		        }
 		        else{
-		          $('#full-bio').slideUp('fast', function(){
-					$('#short-bio').show();
-			        $('.more-text').attr('src','img/more.png');
+		          fullbio.slideUp('fast', function(){
+					shortbio.show();
+			        $('#more-text').attr('src','img/more.png');
 		          });
 		        }
 		    });
@@ -393,9 +372,7 @@ backButton.click(function() {
 });
 
 $(document).ready(function(){
-	/* Keks za jezik :) */
-	jezik = document.cookie.split('=');
-	
+	getSearchbox();
 	getSizes();
 	setLandingSize();
 });
@@ -408,11 +385,11 @@ $(window).resize(function() {
 
 // Show hide sponsors
 $('#sponsor').toggle(function() {
-	$('#app-container').animate({
+	appContainer.animate({
 		'top' : '-200', leaveTransforms:true
 	});
 	}, function() {
-	$('#app-container').animate({
+	appContainer.animate({
 		'top' : '0'
 	});
 	
@@ -425,14 +402,14 @@ function pribaviUpit(){
 	src_zbirka  = $('#sel_zbirka option:selected').selectbox();
 	src_tehnika = $('#sel_tehnika option:selected').selectbox();
 	src_medij   = $('#sel_medij option:selected').selectbox();
-	src_keyword = $('#keyword');
+	keyword = $('#keyword');
 	src_autor.val()   != 0 ? upit.push(src_autor.html())   : upit.push('');
 	src_godina.val()  != 0 ? upit.push(src_godina.html())  : upit.push('');
 	src_zbirka.val()  != 0 ? upit.push(src_zbirka.html())  : upit.push('');
 	src_tehnika.val() != 0 ? upit.push(src_tehnika.html()) : upit.push('');
 	src_medij.val()   != 0 ? upit.push(src_medij.html())   : upit.push('');
-	if(src_keyword.val() != 'Naziv dela' && src_keyword.val() != 'Title') {
-		upit.push(src_keyword.val());
+	if(keyword.val() != 'Naziv dela' && keyword.val() != 'Title') {
+		upit.push(keyword.val());
 	}else{
 		upit.push('');
 	}
@@ -442,23 +419,23 @@ function pribaviUpit(){
 function prebrojRezultate(){
 
 	upit = pribaviUpit();
-	jezik = document.cookie.split('=');
+	livescore = $('#live-score');
+	
 
 	if( src_autor.val() > 0   ||
 		src_godina.val() > 0  ||
 		src_zbirka.val() > 0  ||
 		src_tehnika.val() > 0 ||
 		src_medij.val() > 0   ||
-		src_keyword.val()     != 'Naziv dela' &&
-		src_keyword.val()     != 'Title'
+		keyword.val()     != 'Naziv dela' &&
+		keyword.val()     != 'Title'
 	){
 		$.ajax({
 		  url: 'libs/ajax.php',
 		  type: 'POST',
 		  data: {'fn':'countResults','upit':upit,'lang':jezik[1]},
-		  beforeSend: function(){},
 		  success: function(data){
-		  	$('#live-score').text(data);
+		  	livescore.text(data);
 		}
 		});
 	}
@@ -467,29 +444,21 @@ function prebrojRezultate(){
 		  url: 'libs/ajax.php',
 		  type: 'POST',
 		  data: {'fn':'countAll','lang':jezik[1]},
-		  beforeSend: function(){},
 		  success: function(data){
-		  	$('#live-score').text(data);
+		  	livescore.text(data);
 		}
 		});
 	}
 
 }
 
-$('#lang-call').click(function(){
-	$('#lang-menu').toggleClass('on');
+langCall.click(function(){
+	langMenu.toggleClass('on');
 });
 
 $('.lang-option').click(function(){
-	document.cookie = "lang="+ $(this).attr('title');
+	document.cookie = "lang="+ $(this).attr('alt');
 	location.reload();
-});
-
-/* Procedura za uklanjanje jezičkog menija na click izvan */
-$('#container').click(function() {
-	if( $('#lang-menu').is(':visible') == true ){
-		$('#lang-menu').toggleClass('on');
-	}
 });
 
 /* Onesposobi enter dugme na searchbox-u */

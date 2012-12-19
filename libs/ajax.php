@@ -321,7 +321,7 @@ function showDetails(){
 			
 			echo '
 			<div class="info-row">
-			<span id="bio-label" class="label">'.$rezultati['detalji'][10].' <img src="img/more.png" class="more-text" style="margin-bottom:1px"/></span>
+			<span id="bio-label" class="label">'.$rezultati['detalji'][10].' <img src="img/more.png" id="more-text" style="margin-bottom:1px"/></span>
 			<span class="info">
 				<div id="short-bio">'. substr($biografija, 0, 70). ' ...' .'</div>			
 				<div id="full-bio">'.  $biografija .'</div>

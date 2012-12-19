@@ -887,9 +887,6 @@ input, select {
     display:none;
 }#full-bio{
     display:none;
-}.more-text{
-    margin-bottom:2px;
-}
-#bio-label,.more-text:hover{
+}#bio-label,#more-text:hover{
     cursor: pointer;
 }
