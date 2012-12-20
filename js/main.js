@@ -310,17 +310,19 @@ $('.resoults').live('click', function() {
 
 			var fullbio = $('#full-bio'),
 				shortbio = $('#short-bio'),
-				leadingImg = $('#leading-img');
+				leadingImg = $('#leading-img'),
+				extraImg = $('#extra-img');
 
 			/* Skripta za dodatne slike */
-			$('#extra-img').click(function(){
+			extraImg.click(function(){
 				stari_path = leadingImg.attr('alt');
-				novi_path = $(this).attr('alt');
-				$(this).attr('src','art/thumbnail/'+ stari_path).attr('alt',stari_path);
+				novi_path = extraImg.attr('alt');
+				extraImg.attr('src','art/thumbnail/'+ stari_path).attr('alt',stari_path);
 				leadingImg.attr('src','art/details/' + novi_path).attr('alt',novi_path);
-				$('.feat-img').attr('href','art/master/' + novi_path);
+				$('#feat-img').attr('href','art/master/' + novi_path);				
+				Shadowbox.setup();
+				Shadowbox.init();
 			});
-
 
 			/* Short bio / Full bio */	
 			$('#bio-label').click(function(){
@@ -338,7 +340,6 @@ $('.resoults').live('click', function() {
 		        }
 		    });
 
-			Shadowbox.setup();
 
 		}
 		});

@@ -4,7 +4,7 @@
 	*/
 
 	/* Adjust this nigga when online. */
-	$art_path = $_SERVER['DOCUMENT_ROOT'] . '/MSUV-Search-App/art';
+	$art_path = $_SERVER['DOCUMENT_ROOT'].'/MSUV-Search-App/art';
 
 	/* Konfiguracija za bazu */
 	$config['db'] = array(

@@ -287,7 +287,7 @@ function showDetails(){
 			</video>';
 		}
 		else{	
-			echo '<div><a class="feat-img" rel="shadowbox" href="art/master/'. $id .'.jpg"><img id="leading-img" alt="'.$id.'.jpg" src="art/details/'. $id .'.jpg"></a></div>';
+			echo '<div><a id="feat-img" class="feat-img" rel="shadowbox" href="art/master/'. $id .'.jpg"><img id="leading-img" alt="'.$id.'.jpg" src="art/details/'. $id .'.jpg"></a></div>';
 			echo '<div id="more-images">';
 
 				for($i=1; $i<5; $i++){				
@@ -367,17 +367,8 @@ function showDetails(){
 		<span class="label">'.$rezultati['detalji'][8].':</span>
 		<span class="info">'. ucfirst($row['med_naziv_'.$jezik.'']) .'</span>
 		</div>
-		</div>';
-		
-		if(is_null($row['bio_'.$jezik]) == false){
-			echo '<div id="biografija">
-					<p><h2>'.$row['autor'].'</h2></p>
-					<p>'.$row['bio_'.$jezik].'</p>
-				  </div>';
-		}
-
-		echo '</div></div>';
-
+		</div>
+		</div></div>';
 	}
 
 }
