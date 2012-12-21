@@ -153,7 +153,7 @@ function getResults(){
 		LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
 		LEFT JOIN mediji ON baza.medij=mediji.med_id 
 		WHERE autor LIKE '%".$autor."%' AND 
-		godina LIKE '%".$godina."%' OR godina IS NULL AND
+		ISNULL(godina) LIKE '%".$godina."%' AND
 		zbr_naziv_".$jezik." LIKE '%".$zbirka."%' AND 
 		teh_naziv_".$jezik." LIKE '%".$tehnika."%' AND 
 		med_naziv_".$jezik." LIKE '%".$medij."%' AND 
