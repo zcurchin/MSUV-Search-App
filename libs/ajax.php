@@ -153,7 +153,7 @@ function getResults(){
 		LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
 		LEFT JOIN mediji ON baza.medij=mediji.med_id 
 		WHERE autor LIKE '%".$autor."%' AND 
-		godina LIKE '%".$godina."%' AND
+		godina LIKE '%".$godina."%' OR godina IS NULL AND
 		zbr_naziv_".$jezik." LIKE '%".$zbirka."%' AND 
 		teh_naziv_".$jezik." LIKE '%".$tehnika."%' AND 
 		med_naziv_".$jezik." LIKE '%".$medij."%' AND 
@@ -177,13 +177,20 @@ function getResults(){
 				echo '     
 				<div class="resoults" id="'.idToFname($row['id']).'">
 				<div class="thumb-background">                
-				<span class="thumb-icon"></span>
-				<img src="art/thumbnail/'.idToFname($row['id']).'.jpg">
+					<span class="thumb-icon"></span>
+					<img src="art/thumbnail/'.idToFname($row['id']).'.jpg">
 				</div>
-				<span class="author">'.$row['autor'].'</span>
-				<span class="title">'.$row['naziv_'.$jezik].'</span>
-				<span class="year">'.$row['godina'].'</span>
-				</div>';
+					<span class="author">'.$row['autor'].'</span>
+					<span class="title">'.$row['naziv_'.$jezik].'</span>
+					<span class="year">';
+					
+					if(is_null($row['godina'])){
+						echo '-';
+					}else{
+						echo $row['godina'];
+					}
+					
+					echo '</span></div>';
 			}
 
 			echo '</div></div>';
