@@ -38,10 +38,10 @@
 		
 		'sr' => array('Autor','Naziv','Godina','Dimenzije','Dimenzije lista',
 					   'Dimenzije otiska','Zbirka','Tehnika','Medij',
-					   'Dužina (ss:mm:ss)','Biografija'),
+					   'Dužina (ss:mm:ss)','Biografija','Materijal'),
 		
 		'en' => array('Author','Title','Year','Dimensions','Paper dimensions',
 					  'Print dimensions','Collection','Technique','Medium',
-					  'Duration (hh:mm:ss)','Biography')
+					  'Duration (hh:mm:ss)','Biography','Material')
 	);
 ?>

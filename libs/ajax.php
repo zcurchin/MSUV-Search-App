@@ -42,7 +42,11 @@ function setSearchbox(){
 	// /* Godine */
 	$query = $db->query("SELECT DISTINCT godina FROM baza WHERE godina IS NOT NULL ORDER BY godina ASC");
 	while ($row=$query->fetch(PDO::FETCH_ASSOC)){
-		array_push($godine, $row['godina']);
+		
+		if (strlen($row['godina']) < 5){
+			array_push($godine, $row['godina']);
+		}
+		
 	}
 	$rezultati['godine'] = $godine;
 
@@ -154,9 +158,9 @@ function getResults(){
 		LEFT JOIN mediji ON baza.medij=mediji.med_id 
 		WHERE autor LIKE '%".$autor."%' AND 
 		ISNULL(godina) LIKE '%".$godina."%' AND
-		zbr_naziv_".$jezik." LIKE '%".$zbirka."%' AND 
-		teh_naziv_".$jezik." LIKE '%".$tehnika."%' AND 
-		med_naziv_".$jezik." LIKE '%".$medij."%' AND 
+		ISNULL(zbr_naziv_".$jezik.") LIKE '%".$zbirka."%' AND 
+		ISNULL(teh_naziv_".$jezik.") LIKE '%".$tehnika."%' AND 
+		ISNULL(med_naziv_".$jezik.") LIKE '%".$medij."%' AND 
 		naziv_".$jezik." LIKE '%".$keyword."%' 
 		";
 
@@ -187,7 +191,7 @@ function getResults(){
 					if(is_null($row['godina'])){
 						echo '-';
 					}else{
-						echo $row['godina'];
+						echo $row['godina'].'.';
 					}
 					
 					echo '</span></div>';
@@ -366,9 +370,17 @@ function showDetails(){
 		<span class="label">'.$rezultati['detalji'][6].':</span>
 		<span class="info">'. $row['zbr_naziv_'.$jezik] .'</span>
 		</div>
-		<div class="info-row">
-		<span class="label">'.$rezultati['detalji'][7].':</span>
-		<span class="info">'. $row['teh_naziv_'.$jezik] .'</span>
+		<div class="info-row">';
+		if($medij == 3){
+			echo '<span class="label">'.$rezultati['detalji'][11].':</span>';
+		}
+		else{
+			echo '<span class="label">'.$rezultati['detalji'][7].':</span>';
+		}
+			
+		
+
+		echo '<span class="info">'. $row['teh_naziv_'.$jezik] .'</span>
 		</div>
 		<div class="info-row last-row">
 		<span class="label">'.$rezultati['detalji'][8].':</span>
