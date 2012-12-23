@@ -157,10 +157,10 @@ function getResults(){
 		LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
 		LEFT JOIN mediji ON baza.medij=mediji.med_id 
 		WHERE autor LIKE '%".$autor."%' AND 
-		ISNULL(godina) LIKE '%".$godina."%' AND
-		ISNULL(zbr_naziv_".$jezik.") LIKE '%".$zbirka."%' AND 
-		ISNULL(teh_naziv_".$jezik.") LIKE '%".$tehnika."%' AND 
-		ISNULL(med_naziv_".$jezik.") LIKE '%".$medij."%' AND 
+		COALESCE(godina,'') LIKE '%".$godina."%' AND
+		zbr_naziv_".$jezik." LIKE '%".$zbirka."%' AND 
+		teh_naziv_".$jezik." LIKE '%".$tehnika."%' AND 
+		med_naziv_".$jezik." LIKE '%".$medij."%' AND 
 		naziv_".$jezik." LIKE '%".$keyword."%' 
 		";
 
@@ -239,7 +239,7 @@ function countResults(){
 		LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
 		LEFT JOIN mediji ON baza.medij=mediji.med_id 
 		WHERE autor LIKE '%".$autor."%' AND 
-		godina LIKE '%".$godina."%' AND
+		COALESCE(godina,'') LIKE '%".$godina."%' AND
 		zbr_naziv_".$jezik." LIKE '%".$zbirka."%' AND 
 		teh_naziv_".$jezik." LIKE '%".$tehnika."%' AND 
 		med_naziv_".$jezik." LIKE '%".$medij."%' AND 
