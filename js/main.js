@@ -97,12 +97,13 @@ var windowWidth,
 function getSizes() {
     windowWidth = $(window).width();
     windowHeight = $(window).height();
-    appContainerWidth_Ls = (windowWidth > 1600) ? 960 : 960;
-    appContainerHeight_Ls = (windowWidth > 1600) ? 500 : 500;
-    appContainerWidth_Fs = (windowWidth > 1600) ? 1500 : windowWidth - 40;
-	appContainerHeight_Fs = (windowWidth > 1600) ? windowHeight - 150 : windowHeight - 80;
+    appContainerWidth_Ls = 960;
+    appContainerHeight_Ls = 500;
+    appContainerWidth_Fs = windowWidth - 40;
+	appContainerHeight_Fs = windowHeight - 80;
 	appContainer_marginTop_Ls = Math.round((windowHeight - appContainerHeight_Ls)/2); 
-	appContainer_marginTop_Fs = (windowWidth > 1600) ? 100 : 60;
+	appContainer_marginTop_Fs = 60;
+	//appContainer_marginTop_Fs = (windowWidth > 1600) ? 100 : 60;
 	searchboxWidth = searchbox.width();
 	appContentWidth = (appContainerWidth_Fs - searchboxWidth) - 20;
 	appContentHeight = appContainerHeight_Fs -2;    
@@ -118,11 +119,10 @@ function setLandingSize() {
 }
 
 // Set app container width and height on full size
-function setFullSize() {
-	appContainer_Fs.css({
-		'width' : appContainerWidth_Fs,
+function updateFullSize() {
+	appContainer.css({
+		'width' : appContainerWidth_Fs+5,
 		'height' : appContainerHeight_Fs,
-		'margin-top': appContainer_marginTop_Fs
 	});
 	appContent.css({
 		'width' : appContentWidth,
@@ -380,8 +380,12 @@ $(document).ready(function(){
 
 $(window).resize(function() {
 	getSizes();
-	setLandingSize();
-	setFullSize();
+	
+	if (appContainer.hasClass('full-size')) {
+		updateFullSize();
+	} else {
+		setLandingSize();
+	}
 });
 
 // Show hide sponsors
