@@ -313,10 +313,10 @@ function showDetails(){
 			echo '<div><a id="feat-img" class="feat-img" rel="shadowbox" href="art/master/'. $id .'.jpg"><img id="leading-img" alt="'.$id.'.jpg" src="art/details/'. $id .'.jpg"></a></div>';
 			echo '<div id="more-images">';
 
-				for($i=1; $i<5; $i++){				
+				for($i=1; $i<20; $i++){
 					if(file_exists($art_path .'/master/'.$id.'-'.$i.'.jpg')){
 						echo '<a class="extra-img"><img id="extra-img" alt="'.$id.'-'.$i.'.jpg" src="art/thumbnail/'.$id.'-'.$i.'.jpg"></a>';	
-					}else{}
+					}
 				}
 			echo '</div>';
 		}
@@ -366,19 +366,37 @@ function showDetails(){
 		if($medij==1){
 			//grafika
 			echo'<div class="info-row">
-			<span class="label">'.$rezultati['detalji'][4].':</span>
-			<span class="info">'. $row['graf_dim_l'] .' cm</span>
-			</div>
+			<span class="label">'.$rezultati['detalji'][4].':</span>';
+			if(!is_null($row['graf_dim_l'])){
+				echo '<span class="info">'. $row['graf_dim_l'] .' cm</span>';
+			}
+			else{
+				echo '<span class="info">-</span>';
+			}
+			echo'</div>
 			<div class="info-row">
-			<span class="label">'.$rezultati['detalji'][5].':</span>
-			<span class="info">'. $row['graf_dim_o'] .' cm</span>
-			</div>';
+			<span class="label">'.$rezultati['detalji'][5].':</span>';
+			if(!is_null($row['graf_dim_o'])){
+				echo '<span class="info">'. $row['graf_dim_o'] .' cm</span>';
+			}
+			else{
+				echo '<span class="info">-</span>';
+			}			
+			echo '</div>';
 		}elseif($medij==2 || $medij==3 || $medij==4 || $medij==5 || $medij==8){ 
 			// slika, skulptura, crtež, fotografija
 			echo'<div class="info-row">
-			<span class="label">'.$rezultati['detalji'][3].':</span>
-			<span class="info">'. $row['dim'] .' cm</span>
-			</div>';
+			<span class="label">'.$rezultati['detalji'][3].':</span>';
+			if(!is_null($row['dim'])){
+				echo '<span class="info">'. $row['dim'] .' cm</span>';
+			}
+			else{
+				echo '<span class="info">-</span>';
+			}
+			
+			
+
+			echo '</div>';
 		}
 		elseif($medij==6){
 			// video
@@ -401,8 +419,6 @@ function showDetails(){
 			echo '<span class="label">'.$rezultati['detalji'][7].':</span>';
 		}
 			
-		
-
 		echo '<span class="info">'. $row['teh_naziv_'.$jezik] .'</span>
 		</div>
 		<div class="info-row last-row">
