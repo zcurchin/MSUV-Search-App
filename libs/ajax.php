@@ -183,9 +183,21 @@ function getResults(){
 				<div class="thumb-background">                
 					<span class="thumb-icon"></span>
 					<img src="art/thumbnail/'.idToFname($row['id']).'.jpg">
-				</div>
-					<span class="author">'.$row['autor'].'</span>
-					<span class="title">'.$row['naziv_'.$jezik].'</span>
+				</div>';
+					if($jezik=='sr'){
+						echo '<span class="author">'.$row['autor'].'</span>';
+					}
+					else{
+						if(is_null($row['autor_en_de'])){
+							echo '<span class="author">'.$row['autor'].'</span>';
+						}
+						else{
+							echo '<span class="author">'.$row['autor_en_de'].'</span>';
+						}
+
+					}			
+
+					echo '<span class="title">'.$row['naziv_'.$jezik].'</span>
 					<span class="year">';
 					
 					if(is_null($row['godina'])){
@@ -313,9 +325,20 @@ function showDetails(){
 		</div>
 		<div id="info-box">
 		<div class="info-row">
-		<span class="label">'.$rezultati['detalji'][0].':</span>
-		<span class="info">'.$row['autor'].' </span>
-		</div>';
+		<span class="label">'.$rezultati['detalji'][0].':</span>';
+		
+		if($jezik=='sr'){
+			echo'<span class="info">'.$row['autor'].'</span>';
+		}else{
+			if(is_null($row['autor_en_de'])){
+				echo'<span class="info">'.$row['autor'].'</span>';
+			}
+			else{
+				echo'<span class="info">'.$row['autor_en_de'].'</span>';
+			}
+		}
+		
+		echo '</div>';
 
 		if(is_null($row['bio_'.$jezik]) == false){
 		
