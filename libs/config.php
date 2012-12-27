@@ -8,11 +8,12 @@
 
 	/* Konfiguracija za bazu */
 	$config['db'] = array(
-		'host' => 'digitalizacija.db.4078236.hostedresource.com',
-		'user' => 'digitalizacija',
-		'pass' => 'Muzej666!',
-		'dbname' => 'digitalizacija'
+		'host' => 'mysql51.cnt.rs',
+		'user' => 'msuv_kolekcija',
+		'pass' => 'PB96jecjxmrGT3SG',
+		'dbname' => 'msuv_kolekcija'
 	);
+
 	$db = new PDO(
 		'mysql:host='.  $config['db']['host'].
 		';dbname='. 	$config['db']['dbname'],
