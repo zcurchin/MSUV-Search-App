@@ -1,7 +1,4 @@
 <?php 
-	/* Phpmyadmin
-	   https://p3nlmysqladm001.secureserver.net/dgrid50/115 
-	*/
 
 	/* Adjust this nigga when online. */
 	$art_path = $_SERVER['DOCUMENT_ROOT'].'/MSUV-Search-App/art';
