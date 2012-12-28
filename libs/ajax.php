@@ -33,38 +33,44 @@ function setSearchbox(){
 	$ukupno = $query->rowCount();
 
 	/* Autori */
-	$query = $db->query("SELECT DISTINCT autor FROM baza ORDER BY autor ASC");
-	while ($row=$query->fetch(PDO::FETCH_ASSOC)){
-		array_push($autori, $row['autor']);
+	if($jezik=='sr'){
+		$query = $db->query("SELECT DISTINCT autor FROM baza ORDER BY autor ASC");
+		while ($row=$query->fetch(PDO::FETCH_ASSOC)){
+			array_push($autori, $row['autor']);
+		}
+	}
+	else{
+		$query = $db->query("SELECT DISTINCT autor, autor_en_de FROM baza ORDER BY autor ASC");
+		while ($row=$query->fetch(PDO::FETCH_ASSOC)){
+			is_null($row['autor_en_de']) ? array_push($autori, $row['autor']) : array_push($autori, $row['autor_en_de']);
+		}		
 	}
 	$rezultati['autori'] = $autori;
 
-	// /* Godine */
+	/* Godine */
 	$query = $db->query("SELECT DISTINCT godina FROM baza WHERE godina IS NOT NULL ORDER BY godina ASC");
-	while ($row=$query->fetch(PDO::FETCH_ASSOC)){
-		
+	while ($row=$query->fetch(PDO::FETCH_ASSOC)){	
 		if (strlen($row['godina']) < 5){
 			array_push($godine, $row['godina']);
 		}
-		
 	}
 	$rezultati['godine'] = $godine;
 
-	// /* Zbirke - SRPSKI */
+	/* Zbirke - SRPSKI */
 	$query = $db->query("SELECT zbr_naziv_".$jezik." FROM zbirke ORDER BY zbr_naziv_".$jezik." ASC");
 	while ($row=$query->fetch(PDO::FETCH_ASSOC)){
 		array_push($zbirke, $row['zbr_naziv_'. $jezik]);
 	}
 	$rezultati['zbirke'] = $zbirke;
 
-	// /* Tehnike - SRPSKI */
+	/* Tehnike - SRPSKI */
 	$query = $db->query("SELECT teh_naziv_".$jezik." FROM tehnike ORDER BY teh_naziv_".$jezik." ASC");
 	while ($row=$query->fetch(PDO::FETCH_ASSOC)){
 		array_push($tehnike, $row['teh_naziv_'. $jezik .'']);
 	}
 	$rezultati['tehnike'] = $tehnike;
 
-	// /* Mediji - SRPSKI */
+	/* Mediji - SRPSKI */
 	$query = $db->query("SELECT med_naziv_".$jezik." FROM mediji ORDER BY med_naziv_".$jezik." ASC");
 	while ($row=$query->fetch(PDO::FETCH_ASSOC)){
 		array_push($mediji, $row['med_naziv_'.$jezik.'']);
@@ -72,7 +78,6 @@ function setSearchbox(){
 	$rezultati['mediji'] = $mediji;
 
 	/* HTML */
-
 	echo '<form id="pretraga" onKeyPress="return disableEnterKey(event)">
 	<select id="sel_autor" name="Autor">
 	<!--  selected="selected" -->
@@ -156,13 +161,12 @@ function getResults(){
 		LEFT JOIN zbirke ON baza.zbirka=zbirke.zbr_id 
 		LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
 		LEFT JOIN mediji ON baza.medij=mediji.med_id 
-		WHERE autor LIKE '%".$autor."%' AND 
+		WHERE (autor LIKE '%".$autor."%' OR autor_en_de LIKE '%".$autor."%') AND 
 		COALESCE(godina,'') LIKE '%".$godina."%' AND
 		zbr_naziv_".$jezik." LIKE '%".$zbirka."%' AND 
 		teh_naziv_".$jezik." LIKE '%".$tehnika."%' AND 
 		med_naziv_".$jezik." LIKE '%".$medij."%' AND 
-		naziv_".$jezik." LIKE '%".$keyword."%' 
-		";
+		naziv_".$jezik." LIKE '%".$keyword."%'";
 
 		$query=$db->query($upit_sql);
 		$pogodaka=$query->rowCount();
@@ -244,19 +248,18 @@ function countResults(){
 		$zbirka  = $upit[2];
 		$tehnika = $upit[3];
 		$medij   = $upit[4];
-		$keyword = $upit[5];
+		$keyword = $upit[5];	
 
 		$upit_sql ="SELECT id FROM baza 
 		LEFT JOIN zbirke ON baza.zbirka=zbirke.zbr_id 
 		LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
 		LEFT JOIN mediji ON baza.medij=mediji.med_id 
-		WHERE autor LIKE '%".$autor."%' AND 
+		WHERE (autor LIKE '%".$autor."%' OR autor_en_de LIKE '%".$autor."%') AND
 		COALESCE(godina,'') LIKE '%".$godina."%' AND
 		zbr_naziv_".$jezik." LIKE '%".$zbirka."%' AND 
 		teh_naziv_".$jezik." LIKE '%".$tehnika."%' AND 
 		med_naziv_".$jezik." LIKE '%".$medij."%' AND 
-		naziv_".$jezik." LIKE '%".$keyword."%' 
-		";
+		naziv_".$jezik." LIKE '%".$keyword."%'";
 
 		$query = $db->query($upit_sql);
 		echo $query->rowCount();
@@ -273,7 +276,6 @@ function countAll(){
 function showDetails(){
 
 	require_once('config.php');
-
 	$jezik = $_POST['lang'];
 	
 	/* Naslovi */
