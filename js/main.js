@@ -64,7 +64,7 @@ function getSearchbox() {
 		});
 
 	  	$('#keyword').focus(function(){			
-			if($(this).val() == 'Title' || $(this).val() == 'Naziv dela'){
+			if($(this).val()=='Title' || $(this).val()=='Naziv dela' || $(this).val()=='Werktitel'){
 				$(this).val('').css({'color':'#fff'});
 			}
 		});
@@ -73,7 +73,7 @@ function getSearchbox() {
 			if($(this).val() == ''){
 				if(jezik[1] == 'sr'){ $(this).val('Naziv dela').css({'color':'#666'}); }
 				else if(jezik[1] == 'en'){ $(this).val('Title').css({'color':'#666'}); }
-				else if(jezik[1] == 'de'){ $(this).val('').css({'color':'#666'});}
+				else if(jezik[1] == 'de'){ $(this).val('Werktitel').css({'color':'#666'});}
 			}
 		});
 
@@ -413,7 +413,7 @@ function pribaviUpit(){
 	src_zbirka.val()  != 0 ? upit.push(src_zbirka.html())  : upit.push('');
 	src_tehnika.val() != 0 ? upit.push(src_tehnika.html()) : upit.push('');
 	src_medij.val()   != 0 ? upit.push(src_medij.html())   : upit.push('');
-	if(keyword.val() != 'Naziv dela' && keyword.val() != 'Title') {
+	if(keyword.val()!='Naziv dela' && keyword.val()!='Title' && keyword.val()!='Werktitel') {
 		upit.push(keyword.val());
 	}else{
 		upit.push('');
@@ -433,7 +433,8 @@ function prebrojRezultate(){
 		src_tehnika.val() > 0 ||
 		src_medij.val() > 0   ||
 		keyword.val()     != 'Naziv dela' &&
-		keyword.val()     != 'Title'
+		keyword.val()     != 'Title' &&
+		keyword.val()     != 'Werktitel'
 	){
 		$.ajax({
 		  url: 'libs/ajax.php',

@@ -28,7 +28,11 @@
 		
 		'en' => array('Author','Year','Collection','Technique',
 					   'Medium','Title','Results',
-					   'Your search returned no results.')
+					   'Your search returned no results.'),
+
+		'de' => array('Der Autor','Jahr','Sammlung','Technik',
+					   'Medien','Werktitel','Gefunden',
+					   'Es wurden keine mit Ihrer Suchanfrage übereinstimmenden Dokumente gefunden.')
 	);
 
 	/* Jezik za detalje */
@@ -40,6 +44,10 @@
 		
 		'en' => array('Author','Title','Year','Dimensions','Paper dimensions',
 					  'Print dimensions','Collection','Technique','Medium',
-					  'Duration (hh:mm:ss)','Biography','Material')
+					  'Duration (hh:mm:ss)','Biography','Material'),
+
+		'de' => array('Der Autor','Werktitel','Jahr','Dimension','Blattdimension',
+					  'Abdruckdimension','Sammlung','Technik','Medien',
+					  'Länge (hh:mm:ss)','Biografie','Material')
 	);
 ?>

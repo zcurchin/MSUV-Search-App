@@ -8,7 +8,7 @@ if(!isset($_COOKIE['lang'])){
 }else if($_COOKIE['lang'] == 'en'){
     $lang = array('en','Language','Sponsors');
 }else if($_COOKIE['lang'] == 'de'){
-    $lang = array('de','','','','','');
+    $lang = array('de','Sprachauswahl','Projektsponsor');
 }
 ?>
 <!DOCTYPE html>
@@ -50,6 +50,7 @@ if(!isset($_COOKIE['lang'])){
         <div id="lang-menu">
             <p class="lang-option" alt="sr">Srpski</p>
             <p class="lang-option last-option" alt="en">English</p>
+            <p class="lang-option last-option" alt="de">Deutsch</p>
         </div>
 
         <div id="container">
