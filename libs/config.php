@@ -11,12 +11,7 @@
 		'dbname' => 'msuv_kolekcija'
 	);
 
-	$db = new PDO(
-		'mysql:host='.  $config['db']['host'].
-		';dbname='. 	$config['db']['dbname'],
-		$config['db']['user'],
-		$config['db']['pass']
-	);
+	$db = new PDO('mysql:host='.$config['db']['host'].';dbname='.$config['db']['dbname'],$config['db']['user'],$config['db']['pass']);	
 	$db -> exec("SET CHARACTER SET utf8");
 
 	/* Jezik za naslove */
@@ -33,6 +28,7 @@
 		'de' => array('Der Autor','Jahr','Sammlung','Technik',
 					   'Medien','Werktitel','Gefunden',
 					   'Es wurden keine mit Ihrer Suchanfrage übereinstimmenden Dokumente gefunden.')
+
 	);
 
 	/* Jezik za detalje */
@@ -49,5 +45,6 @@
 		'de' => array('Der Autor','Werktitel','Jahr','Dimension','Blattdimension',
 					  'Abdruckdimension','Sammlung','Technik','Medien',
 					  'Länge (hh:mm:ss)','Biografie','Material')
+
 	);
 ?>
