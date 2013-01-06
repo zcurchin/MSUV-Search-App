@@ -13,6 +13,7 @@ var appContainer = $('#app-container'),
 	keyword = $('#keyword'),
 	langCall = $('#lang-call'),
 	langMenu = $('#lang-menu'),
+	sponsorBgd = $('#sponsor-bgd'),
 	jezik = document.cookie.split('=');
 
 // Slider
@@ -391,13 +392,35 @@ $(window).resize(function() {
 // Show hide sponsors
 $('#sponsor').toggle(function() {
 	appContainer.animate({
-		'top' : '-200', leaveTransforms:true
+		'top' : '-=150px', leaveTransforms:true
 	});
+
+	$(this).animate({
+		'top' : "-=150px"
+	}, function (){
+		sponsorBgd.animate({'opacity':'1'});
+	});
+
+	$('#close-sponsors').animate({'opacity':'1'});
+
+	sponsorBgd.css({
+		'display' : 'block'
+	});
+
 	}, function() {
+	$('#close-sponsors').animate({'opacity':'0'});
+
 	appContainer.animate({
-		'top' : '0'
+		'top' : '+=150px'
+	});	
+
+	$(this).animate({
+		'top' : "+=150px"
 	});
-	
+
+	sponsorBgd.animate({'opacity':'0'}, function (){
+			$(this).css({'display':'none'});
+		});
 });
 
 function pribaviUpit(){

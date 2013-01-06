@@ -44,7 +44,14 @@ if(!isset($_COOKIE['lang'])){
         <!-- Application -->
         
         <a href="index.php"><div id="logo"></div></a>
-        <div id="sponsor"><span id="sponsor-icon"></span><p><?php echo $lang[2] ?></p></div>
+        <div id="sponsor">
+            <span id="sponsor-icon"></span>
+            <p><?php echo $lang[2] ?></p>
+            <span id="close-sponsors"></span>
+        </div>
+        <div id="sponsor-bgd">
+            <span id="sponsor-logo"></span>
+        </div>
         
         <p id="lang-call"><?php echo $lang[1] ?></p>
         <div id="lang-menu">
