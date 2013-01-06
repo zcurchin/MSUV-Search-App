@@ -1,3 +1,7 @@
+
+$('html').spin();
+
+
 // Cache elements selectors in global variables
 var appContainer = $('#app-container'),
 	appContainer_Ls = $('#app-container.landing-size'),
@@ -77,6 +81,9 @@ function getSearchbox() {
 				else if(jezik[1] == 'de'){ $(this).val('Werktitel').css({'color':'#666'});}
 			}
 		});
+
+		$('html').spin(false);
+		$('body').animate({'opacity':'1'});
 
     }
 	});

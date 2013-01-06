@@ -32,8 +32,7 @@ if(!isset($_COOKIE['lang'])){
         <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
         <link rel="stylesheet" href="css/jquery.selectbox.css">
         <link rel="stylesheet" href="css/shadowbox.css">
-        <link rel="stylesheet" href="videojs/video-js.min.css" /></code>
-
+        <link rel="stylesheet" href="videojs/video-js.min.css" />
         
     </head>
     <body>
@@ -117,6 +116,7 @@ if(!isset($_COOKIE['lang'])){
         </div>
         
         <div id="hidden-bottom-menu"></div>
+        
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
         <script src="js/vendor/jquery-ui-1.9.0.custom.min.js"></script>
