@@ -485,6 +485,20 @@ langCall.click(function(){
 	langMenu.toggleClass('on');
 });
 
+$('html').click(function() {
+  if (langMenu.hasClass('on')){
+	langMenu.toggleClass('on');
+	}
+});
+
+langMenu.click(function(event){
+    event.stopPropagation();
+});
+
+langCall.click(function(event){
+    event.stopPropagation();
+});
+
 $('.lang-option').click(function(){
 	document.cookie = "lang="+ $(this).attr('alt');
 	location.reload();

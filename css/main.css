@@ -259,6 +259,10 @@ body {
     margin: 0;
 }
 
+.lang-option.active {
+    color: #fff;
+}
+
 .lang-option:hover {
     color: #fff;
     cursor: pointer;
@@ -406,6 +410,7 @@ input, select {
     float: left;
     z-index:100;
     position: relative;
+    background: #f0f0f0;
 }
 
 #slides a {

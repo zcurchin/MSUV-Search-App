@@ -56,7 +56,7 @@ if(!isset($_COOKIE['lang'])){
         <p id="lang-call"><?php echo $lang[1] ?></p>
         <div id="lang-menu">
             <p class="lang-option" alt="sr">Srpski</p>
-            <p class="lang-option last-option" alt="en">English</p>
+            <p class="lang-option" alt="en">English</p>
             <p class="lang-option last-option" alt="de">Deutsch</p>
         </div>
 
