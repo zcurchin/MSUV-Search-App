@@ -49,7 +49,7 @@ if(!isset($_COOKIE['lang'])){
             <span id="close-sponsors"></span>
         </div>
         <div id="sponsor-bgd">
-            <span id="sponsor-logo"></span>
+            <a href="http://www.artmentor.ch/" target="_blank"><span id="sponsor-logo"></span></a>
         </div>
         
         <p id="lang-call"><?php echo $lang[1] ?></p>
