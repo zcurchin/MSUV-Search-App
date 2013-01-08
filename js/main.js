@@ -403,7 +403,7 @@ $('#sponsor').toggle(function() {
 	});
 
 	$(this).animate({
-		'top' : "-=150px"
+		'top' : "-=150px", leaveTransforms:true
 	}, function (){
 		sponsorBgd.animate({'opacity':'1'});
 	});
@@ -415,19 +415,19 @@ $('#sponsor').toggle(function() {
 	});
 
 	}, function() {
-	$('#close-sponsors').animate({'opacity':'0'});
+	$('#close-sponsors').css({'opacity':'0'});
 
 	appContainer.animate({
-		'top' : '+=150px'
+		'top' : '+=150px', leaveTransforms:true
 	});	
 
 	$(this).animate({
-		'top' : "+=150px"
+		'top' : "+=150px", leaveTransforms:true
 	});
 
 	sponsorBgd.animate({'opacity':'0'}, function (){
-			$(this).css({'display':'none'});
-		});
+		$(this).css({'display':'none'});
+	});
 });
 
 function pribaviUpit(){

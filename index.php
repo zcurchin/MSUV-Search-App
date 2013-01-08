@@ -24,16 +24,13 @@ if(!isset($_COOKIE['lang'])){
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="favicon.ico">
-
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
         <link rel="stylesheet" href="css/jquery.selectbox.css">
         <link rel="stylesheet" href="css/shadowbox.css">
         <link rel="stylesheet" href="videojs/video-js.min.css" />
-        
     </head>
     <body>
         <!--[if lt IE 7]>
