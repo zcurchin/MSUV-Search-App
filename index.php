@@ -1,13 +1,12 @@
 <?php
-
-if(!isset($_COOKIE['lang'])){
-    setcookie('lang','sr');
+if(!isset($_COOKIE['jezik'])){
+    setcookie('jezik','sr');
     $lang = array('sr','Izbor jezika','Sponzor projekta');
-}else if($_COOKIE['lang'] == 'sr'){
+}else if($_COOKIE['jezik'] == 'sr'){
     $lang = array('sr','Izbor jezika','Sponzor projekta');
-}else if($_COOKIE['lang'] == 'en'){
+}else if($_COOKIE['jezik'] == 'en'){
     $lang = array('en','Language','Sponsors');
-}else if($_COOKIE['lang'] == 'de'){
+}else if($_COOKIE['jezik'] == 'de'){
     $lang = array('de','Sprachauswahl','Projektsponsor');
 }
 ?>

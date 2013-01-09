@@ -1,7 +1,6 @@
 
 $('html').spin();
 
-
 // Cache elements selectors in global variables
 var appContainer = $('#app-container'),
 	appContainer_Ls = $('#app-container.landing-size'),
@@ -18,7 +17,8 @@ var appContainer = $('#app-container'),
 	langCall = $('#lang-call'),
 	langMenu = $('#lang-menu'),
 	sponsorBgd = $('#sponsor-bgd'),
-	jezik = document.cookie.split('=');
+	jezik = document.cookie.split('jezik=');
+	jezik = jezik[1].substr(0,2);
 
 // Slider
 $(function(){
@@ -59,7 +59,7 @@ function getSearchbox() {
 	$.ajax({
 	  url: 'libs/ajax.php',
 	  type: 'POST',
-	  data: {'fn':'setSearchbox','lang':jezik[1]},
+	  data: {'fn':'setSearchbox','lang':jezik},
 	  success: function(data){
 	  	searchbox.html(data);
 	  	$('select','#searchbox').selectbox({
@@ -76,9 +76,9 @@ function getSearchbox() {
 
 	   	$('#keyword').blur(function(){			
 			if($(this).val() == ''){
-				if(jezik[1] == 'sr'){ $(this).val('Naziv dela').css({'color':'#666'}); }
-				else if(jezik[1] == 'en'){ $(this).val('Title').css({'color':'#666'}); }
-				else if(jezik[1] == 'de'){ $(this).val('Werktitel').css({'color':'#666'});}
+				if(jezik == 'sr'){ $(this).val('Naziv dela').css({'color':'#666'}); }
+				else if(jezik == 'en'){ $(this).val('Title').css({'color':'#666'}); }
+				else if(jezik == 'de'){ $(this).val('Werktitel').css({'color':'#666'});}
 			}
 		});
 
@@ -223,7 +223,7 @@ function showSearchResoults(){
 	$.ajax({
 	  url: 'libs/ajax.php',
 	  type: 'POST',
-	  data: {'fn':'getResults','upit':pribaviUpit(),'lang':jezik[1]},
+	  data: {'fn':'getResults','upit':pribaviUpit(),'lang':jezik},
 	  success: function(data){
 		scene1.html(data);
 		handleSearchResoults();		
@@ -310,7 +310,7 @@ $('.resoults').live('click', function() {
 		$.ajax({
 		url: 'libs/ajax.php',
 		type: 'POST',
-		data: {'fn':'showDetails','id':id,'lang':jezik[1]},
+		data: {'fn':'showDetails','id':id,'lang':jezik},
 		success: function(data){
 			window.location.hash = id;
 			scene2.html(data);
@@ -469,7 +469,7 @@ function prebrojRezultate(){
 		$.ajax({
 		  url: 'libs/ajax.php',
 		  type: 'POST',
-		  data: {'fn':'countResults','upit':upit,'lang':jezik[1]},
+		  data: {'fn':'countResults','upit':upit,'lang':jezik},
 		  success: function(data){
 		  	livescore.text(data);
 		}
@@ -479,7 +479,7 @@ function prebrojRezultate(){
 		$.ajax({
 		  url: 'libs/ajax.php',
 		  type: 'POST',
-		  data: {'fn':'countAll','lang':jezik[1]},
+		  data: {'fn':'countAll','lang':jezik},
 		  success: function(data){
 		  	livescore.text(data);
 		}
@@ -507,7 +507,7 @@ langCall.click(function(event){
 });
 
 $('.lang-option').click(function(){
-	document.cookie = "lang="+ $(this).attr('alt');
+	document.cookie = "jezik="+ $(this).attr('alt');
 	location.reload();
 });
 
