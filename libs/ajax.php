@@ -307,7 +307,7 @@ function showDetails(){
 		// video
 			echo '
 			<video id="video" class="video-js vjs-default-skin" controls width="450" height="338" preload="auto" loop data-setup="{}">
-			<!-- <source type="video/mp4" src="art/video/'.$id.'.mp4">-->
+			<source type="video/mp4" src="art/video/'.$id.'.mp4">
 			<source type="video/webm" src="art/video/'.$id.'.webm">
 			</video>';
 		}
