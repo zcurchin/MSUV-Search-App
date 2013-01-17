@@ -303,7 +303,7 @@ function showDetails(){
 
 		echo '<div id="details-outer"><div id="details"><div id="images-box">';
 		
-		if($medij ==6){ 
+		if($medij==6){ 
 		// video
 			echo '
 			<video id="video" class="video-js vjs-default-skin" controls width="450" height="338" preload="auto" loop data-setup="{}">
@@ -314,10 +314,15 @@ function showDetails(){
 		else{	
 			echo '<div><a id="feat-img" class="feat-img" rel="shadowbox" href="art/master/'. $id .'.jpg"><img id="leading-img" alt="'.$id.'.jpg" src="art/details/'. $id .'.jpg"></a></div>';
 			echo '<div id="more-images">';
-
+				
+				/* 360 za skulpture */
+				if ($row['extras']==1 && $medij==3){
+					echo '<a class="extra-360"><img id="extra-360" alt="" src="img/360.png"></a>';
+				}
+				/* Extra images */
 				for($i=1; $i<20; $i++){
 					if(file_exists($art_path .'/master/'.$id.'-'.$i.'.jpg')){
-						echo '<a class="extra-img"><img id="extra-img" alt="'.$id.'-'.$i.'.jpg" src="art/thumbnail/'.$id.'-'.$i.'.jpg"></a>';	
+						echo '<a class="extra-img"><img id="extra-img" alt="'.$id.'-'.$i.'.jpg" src="art/thumbnail/'.$id.'-'.$i.'.jpg"></a>';
 					}
 				}
 			echo '</div>';
@@ -361,9 +366,9 @@ function showDetails(){
 		<span class="info">'.$row['naziv_'.$jezik].'
 		</div>
 		<div class="info-row">
-		<span class="label">'.$rezultati['detalji'][2].':</span>
-		<span class="info">'.$row['godina'].'.</span>
-		</div>';
+		<span class="label">'.$rezultati['detalji'][2].':</span>';
+		if(!is_null($row['godina'])) echo '<span class="info">'.$row['godina'].'.</span></div>';
+		else 						 echo '<span class="info">-</span></div>';
 		
 		if($medij==1){
 			//grafika

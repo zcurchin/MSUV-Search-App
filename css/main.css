@@ -661,6 +661,22 @@ input, select {
     height: auto;
 }
 
+/* 360 button */
+#images-box .extra-360 img {
+    width: 100%;
+    height: auto;
+}#images-box a.extra-360 {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    display: block;
+    float: left;
+    margin: 10px 10px 0 0 ;
+    border: 1px solid #efefef;
+    cursor:pointer;
+}
+/* 360 button */
+
 #images-box a:hover {
     border: 1px solid #777;
     opacity: 0.8;
