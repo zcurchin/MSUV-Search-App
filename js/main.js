@@ -106,7 +106,7 @@ function getSizes() {
     windowWidth = $(window).width();
     windowHeight = $(window).height();
     appContainerWidth_Ls = 960;
-    appContainerHeight_Ls = 500;
+    appContainerHeight_Ls = 552;
     appContainerWidth_Fs = windowWidth - 40;
 	appContainerHeight_Fs = windowHeight - 80;
 	appContainer_marginTop_Ls = Math.round((windowHeight - appContainerHeight_Ls)/2); 

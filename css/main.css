@@ -283,7 +283,7 @@ body {
 #searchbox {
     float: left;    
     width: 250px;
-    height: 500px;
+    height: 552px;
     background: #060606;
     z-index: 100;
 }
@@ -339,6 +339,40 @@ input, select {
     text-align: right;
     margin-right: 7px;
     color: #d1d1d1;
+}
+
+#reset-search {
+    border-top: 1px solid #151515;
+    padding: 10px 20px 10px 30px;
+}
+
+#reset-label {
+    float: left;
+    margin: 5px 0 0;
+    font-size: 14px;   
+}
+
+#reset-search:hover {
+    background: #080808;
+    border-color: #222;
+    cursor: pointer;
+    color: #444;
+}
+
+#reset-search:hover #reset-btn {
+    background-position: 0 -30px;
+}
+
+#reset-btn {
+    width: 30px;
+    height: 30px;
+    background: url(../img/reset-icon.png) 0 0 no-repeat;
+    display: block;
+    float: right;
+}
+
+#reset-btn:hover {
+    
 }
 
 #search-btn {
@@ -410,7 +444,7 @@ input, select {
 =================================================*/
 
 #slides {
-    height: 500px;
+    height: 552px;
     width: 710px;
     float: left;
     z-index:100;
@@ -424,7 +458,7 @@ input, select {
 
 .slide img {
     width: 710px;
-    height: 500px;
+    height: 552px;
 }
 
 /*
@@ -436,7 +470,7 @@ input, select {
 
 .slides_container {
     width:710px;
-    height: 500px;
+    height: 552px;
     overflow:hidden;
     position:relative;
     display:none;
@@ -452,7 +486,7 @@ input, select {
 
 .slides_container div.slide {
     width:710px;
-    height:500px;
+    height:552px;
     display:block;
 }
 

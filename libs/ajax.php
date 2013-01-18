@@ -122,8 +122,13 @@ function setSearchbox(){
 	}                
 	echo '</select>';
 
-	echo '<div id="live-search">
+	echo '	
+	<div id="live-search">
 	<span id="live-label">'. $rezultati['naslovi'][6] .'</span><span id="live-score">'. $ukupno .'</span>
+	</div>
+
+	<div id="reset-search" class="clearfix">
+	<span id="reset-label">Ponisti pretragu</span><span id="reset-btn"></span>
 	</div>
 
 	<div id="search-btn">
