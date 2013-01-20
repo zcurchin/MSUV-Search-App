@@ -514,7 +514,7 @@ input, select {
 */
 
 .pagination {
-    width: 70px;
+    width: 100px;
     position: absolute;
     right: 0;
     display: block;
