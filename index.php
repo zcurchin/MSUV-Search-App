@@ -69,27 +69,39 @@ if(!isset($_COOKIE['jezik'])){
                         <div class="slide">
                             <a href="#"><img src="img/slides/slide_1.jpg" alt="Slide 1"></a>
                             <div class="caption">
-                                <p>Viktor Vazareli / Naslov dela / 1987.</p>
+                                <p>Viktor Vazareli / Grafika / 1971.</p>
                             </div>
                         </div>
                         <div class="slide">
                             <a href="#"><img src="img/slides/slide_2.jpg" alt="Slide 1"></a>
                             <div class="caption">
-                                <p>Viktor Vazareli / Naslov dela / 1987.</p>
+                                <p>Ištvan Sajko / Mlada / 1969.</p>
                             </div>
                         </div> 
                         <div class="slide">
                             <a href="#"><img src="img/slides/slide_3.jpg" alt="Slide 1"></a>
                             <div class="caption">
-                                <p>Viktor Vazareli / Naslov dela / 1987.</p>
+                                <p>Borislav Šuput / Pisaća mašina / 1979.</p>
                             </div>
-                        </div> 
+                        </div>
                         <div class="slide">
                             <a href="#"><img src="img/slides/slide_4.jpg" alt="Slide 1"></a>
                             <div class="caption">
-                                <p>Viktor Vazareli / Naslov dela / 1987.</p>
+                                <p>Slobodan Bodulić / Struktura / 1980.</p>
                             </div>
-                        </div>                  
+                        </div>
+                        <div class="slide">
+                            <a href="#"><img src="img/slides/slide_5.jpg" alt="Slide 1"></a>
+                            <div class="caption">
+                                <p>Atila Černik / Telopis / 1975.</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <a href="#"><img src="img/slides/slide_6.jpg" alt="Slide 1"></a>
+                            <div class="caption">
+                                <p>Bogdanka Poznanović / Libri in labirintum / 1986.</p>
+                            </div>
+                        </div>                        
                     </div>
                     <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
                     <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
