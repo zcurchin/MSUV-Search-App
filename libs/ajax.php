@@ -128,7 +128,7 @@ function setSearchbox(){
 	</div>
 
 	<div id="reset-search" class="clearfix">
-	<span id="reset-label">Ponisti pretragu</span><span id="reset-btn"></span>
+	<span id="reset-label">'.$rezultati['naslovi'][8].'</span><span id="reset-btn"></span>
 	</div>
 
 	<div id="search-btn">

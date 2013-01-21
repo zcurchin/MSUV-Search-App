@@ -18,16 +18,17 @@
 	$naslovi = array(
 		
 		'sr' => array('Autor','Godina','Zbirka','Tehnika',
-					  'Medij','Naziv dela','Pronađeno',
-					  'Nema rezultata za vašu pretragu.'),
+					  'Medij','Ključna reč','Pronađeno',
+					  'Nema rezultata za vašu pretragu.','Poništi pretragu'),
 		
 		'en' => array('Author','Year','Collection','Technique',
-					   'Medium','Title','Results',
-					   'Your search returned no results.'),
+					   'Medium','Keyword','Results',
+					   'Your search returned no results.','Reset search'),
 
 		'de' => array('Der Autor','Jahr','Sammlung','Technik',
 					   'Medien','Werktitel','Gefunden',
-					   'Es wurden keine mit Ihrer Suchanfrage übereinstimmenden Dokumente gefunden.')
+					   'Es wurden keine mit Ihrer Suchanfrage übereinstimmenden Dokumente gefunden.',
+					   'Reset search')
 
 	);
 

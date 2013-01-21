@@ -19,6 +19,7 @@ var appContainer = $('#app-container'),
 	sponsorBgd = $('#sponsor-bgd'),
 	jezik = document.cookie.split('jezik=');
 	jezik = jezik[1].substr(0,2);
+	naziv_keyword = ['Ključna reč','Keyword','Werktitel'];
 
 // Slider
 $(function(){
@@ -62,28 +63,48 @@ function getSearchbox() {
 	  data: {'fn':'setSearchbox','lang':jezik},
 	  success: function(data){
 	  	searchbox.html(data);
-	  	$('select','#searchbox').selectbox({
+
+	  	var keyword = $('#keyword');
+
+	  	$('select', searchbox).selectbox({
 			onChange: function(val, inst){
 				prebrojRezultate();
 			},
 		});
 
-	  	$('#keyword').focus(function(){			
-			if($(this).val()=='Title' || $(this).val()=='Naziv dela' || $(this).val()=='Werktitel'){
+	  	keyword.focus(function(){			
+			if($(this).val()==naziv_keyword[0] || $(this).val()==naziv_keyword[1] || $(this).val()==naziv_keyword[2]){
 				$(this).val('').css({'color':'#fff'});
 			}
 		});
 
-	   	$('#keyword').blur(function(){			
+	   	keyword.blur(function(){			
 			if($(this).val() == ''){
-				if(jezik == 'sr'){ $(this).val('Naziv dela').css({'color':'#666'}); }
-				else if(jezik == 'en'){ $(this).val('Title').css({'color':'#666'}); }
-				else if(jezik == 'de'){ $(this).val('Werktitel').css({'color':'#666'});}
+				if(jezik == 'sr'){ $(this).val(naziv_keyword[0]).css({'color':'#666'}); }
+				else if(jezik == 'en'){ $(this).val(naziv_keyword[1]).css({'color':'#666'}); }
+				else if(jezik == 'de'){ $(this).val(naziv_keyword[2]).css({'color':'#666'});}
 			}
 		});
 
 		$('html').spin(false);
 		$('body').animate({'opacity':'1'});
+
+		/* Poništi pretragu */
+		$('#reset-search').click(function(){	
+			$('select',searchbox).selectbox("detach");
+			$('select').val(0);
+			$('select', searchbox).selectbox({
+				onChange: function(val, inst){
+					prebrojRezultate();
+				},
+			});
+
+			if     (jezik=='sr') $('#keyword').val(naziv_keyword[0]).css({'color':'#666'});
+			else if(jezik=='en') $('#keyword').val(naziv_keyword[1]).css({'color':'#666'});
+			else if(jezik=='de') $('#keyword').val(naziv_keyword[2]).css({'color':'#666'});
+
+			prebrojRezultate();
+		});
 
     }
 	});
@@ -443,7 +464,7 @@ function pribaviUpit(){
 	src_zbirka.val()  != 0 ? upit.push(src_zbirka.html())  : upit.push('');
 	src_tehnika.val() != 0 ? upit.push(src_tehnika.html()) : upit.push('');
 	src_medij.val()   != 0 ? upit.push(src_medij.html())   : upit.push('');
-	if(keyword.val()!='Naziv dela' && keyword.val()!='Title' && keyword.val()!='Werktitel') {
+	if(keyword.val()!=naziv_keyword[0] && keyword.val()!=naziv_keyword[1] && keyword.val()!=naziv_keyword[2]) {
 		upit.push(keyword.val());
 	}else{
 		upit.push('');
@@ -456,15 +477,14 @@ function prebrojRezultate(){
 	upit = pribaviUpit();
 	livescore = $('#live-score');
 	
-
 	if( src_autor.val() > 0   ||
 		src_godina.val() > 0  ||
 		src_zbirka.val() > 0  ||
 		src_tehnika.val() > 0 ||
 		src_medij.val() > 0   ||
-		keyword.val()     != 'Naziv dela' &&
-		keyword.val()     != 'Title' &&
-		keyword.val()     != 'Werktitel'
+		keyword.val()     != naziv_keyword[0] &&
+		keyword.val()     != naziv_keyword[1] &&
+		keyword.val()     != naziv_keyword[2]
 	){
 		$.ajax({
 		  url: 'libs/ajax.php',
@@ -514,14 +534,8 @@ $('.lang-option').click(function(){
 /* Onesposobi enter dugme na searchbox-u */
 function disableEnterKey(e){
      var key;
-     if(window.event){
-		key = window.event.keyCode; // IE
-     }else{
-		key = e.which; // Firefox
-     }
-     if(key == 13){
-        return false;
-     }else{
-        return true;
-     }
+     if(window.event) key = window.event.keyCode; // IE
+     else key = e.which; // Firefox
+     if(key == 13) return false;
+     else return true;
 }
