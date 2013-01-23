@@ -258,7 +258,7 @@ function showSearchResoults(){
 	});
 }
 
-$('#search-btn').live('click', function() {	
+function searchClick(){
 	if (appContainer.hasClass('landing-size')){
 		animateFullSize();
 		scene1.css({'display' : 'block'}).addClass('visible');
@@ -292,7 +292,11 @@ $('#search-btn').live('click', function() {
 			
 			setTimeout(showSearchResoults,500);
 		}
-	}	
+	}
+}
+
+$('#search-btn').live('click', function() {	
+	searchClick();
 });
 
 closeButton.click(function() {	
@@ -542,6 +546,10 @@ function disableEnterKey(e){
      var key;
      if(window.event) key = window.event.keyCode; // IE
      else key = e.which; // Firefox
-     if(key == 13) return false;
-     else return true;
+     if(key == 13){
+     	searchClick();
+     	return false;
+     }else{
+     	return true;
+     } 
 }
