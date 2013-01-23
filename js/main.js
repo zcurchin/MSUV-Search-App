@@ -83,6 +83,7 @@ function getSearchbox() {
 				if(jezik == 'sr'){ $(this).val(naziv_keyword[0]).css({'color':'#666'}); }
 				else if(jezik == 'en'){ $(this).val(naziv_keyword[1]).css({'color':'#666'}); }
 				else if(jezik == 'de'){ $(this).val(naziv_keyword[2]).css({'color':'#666'});}
+				prebrojRezultate();
 			}
 		});
 
@@ -105,6 +106,11 @@ function getSearchbox() {
 
 			prebrojRezultate();
 		});
+
+		/* Pretraga tokom kucanja */
+		$(keyword).bindWithDelay("keydown", function(){
+			if ($(this).val().length >= 4) prebrojRezultate(); 
+		}, 400);
 
     }
 	});

@@ -166,12 +166,13 @@ function getResults(){
 		LEFT JOIN zbirke ON baza.zbirka=zbirke.zbr_id 
 		LEFT JOIN tehnike ON baza.tehnika=tehnike.teh_id 
 		LEFT JOIN mediji ON baza.medij=mediji.med_id 
-		WHERE (autor LIKE '%".$autor."%' OR autor_en_de LIKE '%".$autor."%') AND 
+		WHERE 
+		(autor LIKE '%".$autor."%' OR autor_en_de LIKE '%".$autor."%') AND 
 		COALESCE(godina,'') LIKE '%".$godina."%' AND
 		zbr_naziv_".$jezik." LIKE '%".$zbirka."%' AND 
 		teh_naziv_".$jezik." LIKE '%".$tehnika."%' AND 
 		med_naziv_".$jezik." LIKE '%".$medij."%' AND 
-		naziv_".$jezik." LIKE '%".$keyword."%'";
+		(naziv_".$jezik." LIKE '%".$keyword."%' OR autor LIKE '%".$keyword."%' OR autor_en_de LIKE '%".$keyword."%')";
 
 		$query=$db->query($upit_sql);
 		$pogodaka=$query->rowCount();
@@ -264,7 +265,7 @@ function countResults(){
 		zbr_naziv_".$jezik." LIKE '%".$zbirka."%' AND 
 		teh_naziv_".$jezik." LIKE '%".$tehnika."%' AND 
 		med_naziv_".$jezik." LIKE '%".$medij."%' AND 
-		naziv_".$jezik." LIKE '%".$keyword."%'";
+		(naziv_".$jezik." LIKE '%".$keyword."%' OR autor LIKE '%".$keyword."%' OR autor_en_de LIKE '%".$keyword."%')";
 
 		$query = $db->query($upit_sql);
 		echo $query->rowCount();
