@@ -430,16 +430,31 @@ $(window).resize(function() {
 });
 
 // Show hide sponsors
+
 $('#sponsor').toggle(function() {
+	$.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
+	$.browser.safari = /safari/.test(navigator.userAgent.toLowerCase());
+
 	appContainer.animate({
 		'top' : '-=150px', leaveTransforms:true
 	});
 
-	$(this).animate({
+	if ($.browser.chrome || $.browser.safari) {
+		
+		$(this).animate({
 		'top' : "-=150px", leaveTransforms:true
+
+		}, function (){
+			sponsorBgd.animate({'opacity':'1'});
+		});
+	} else {
+		$(this).animate({
+		'top' : "-=150px"
+
 	}, function (){
 		sponsorBgd.animate({'opacity':'1'});
-	});
+		});
+	}	
 
 	$('#close-sponsors').animate({'opacity':'1'});
 
@@ -454,9 +469,16 @@ $('#sponsor').toggle(function() {
 		'top' : '+=150px', leaveTransforms:true
 	});	
 
-	$(this).animate({
-		'top' : "+=150px", leaveTransforms:true
-	});
+	if ($.browser.chrome || $.browser.safari) {
+		$(this).animate({
+			'top' : "+=150px", leaveTransforms:true
+		});
+	} else {
+		$(this).animate({
+			'top' : "+=150px"
+		});
+	}
+	
 
 	sponsorBgd.animate({'opacity':'0'}, function (){
 		$(this).css({'display':'none'});
@@ -519,24 +541,6 @@ function prebrojRezultate(){
 	}
 
 }
-
-langCall.click(function(){
-	langMenu.toggleClass('on');
-});
-
-$('html').click(function() {
-  if (langMenu.hasClass('on')){
-	langMenu.toggleClass('on');
-	}
-});
-
-langMenu.click(function(event){
-    event.stopPropagation();
-});
-
-langCall.click(function(event){
-    event.stopPropagation();
-});
 
 $('.lang-option').click(function(){
 	document.cookie = "jezik="+ $(this).attr('alt');
