@@ -35,7 +35,7 @@ $(function(){
 			},100);
 			if (window.console && console.log) {
 				// example return of current slide number
-				//console.log('animationStart on slide: ', current);
+				// console.log('animationStart on slide: ', current);
 			};
 		},
 		animationComplete: function(current){
@@ -44,7 +44,7 @@ $(function(){
 			},200);
 			if (window.console && console.log) {
 				// example return of current slide number
-				//console.log('animationComplete on slide: ', current);
+				// console.log('animationComplete on slide: ', current);
 			};
 		},
 		slidesLoaded: function() {
@@ -168,7 +168,9 @@ function updateFullSize() {
 // Transition animation from landing to full size
 // When user click on search button from landing size
 function animateFullSize(){	
-	slider.css({'display':'none'});
+	
+	slider.css({'left':'3000px'});
+
 	appContainer_shadow.fadeOut(300, function(){		
 		appContainer.animate({
 			'width' : appContainerWidth_Fs,
@@ -211,7 +213,7 @@ function animateLandingSize(){
 	
 	setTimeout(function(){
 		getSearchbox(); // Another call for searchbox
-		slider.css({'display':'block'});
+		slider.css({'left':'250px'});
 	},1000);
 }
 

@@ -99,12 +99,16 @@ textarea {
    ========================================================================== */
 
 body {
-    /* background: url("../img/background.png"); */
     background: #dfdfdf;
 }
 
-#container {
-
+#logo {
+    position: absolute;
+    width: 198px;
+    height: 26px;
+    background: url(../img/MSUV-logo.png) no-repeat;
+    top: 20px;
+    left: 20px;
 }
 
 #app-container {
@@ -224,53 +228,33 @@ body {
     margin: 70px auto 0;
 }
 
-#lang-call {
-    font-size: 15px;
-    color: #777;
-    position: absolute;
-    margin: 0 20px;
-    top: 18px;
-    right: 0;
-    line-height: 40px;
-}
-
 #lang-menu {
-    width: 160px;
-    padding: 20px;
-    background-color: #060606;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
     position: absolute;
-    top: 48px;
-    right: 20px;
+    top: 12px;
+    right: 17px;
     z-index: 1000;
     text-align: center;
     color: #666;
-    font-size: 15px;
-    display: none;
+    font-size: 14px;
 }
 
-#lang-menu.on {
-    display: block;
-}
-
-#lang-call:hover {
-    color: #111;
-    cursor: pointer;
-}
-
-.lang-option {
-    border-bottom: 1px solid #151515;
+.lang-option {    
+    background: #f2f2f2;
     padding: 10px;
-    margin: 0;
+    margin-right: 5px;
+    display: block;
+    float: left;
 }
 
 .lang-option.active {
     color: #fff;
+    background: #060606;
 }
 
 .lang-option:hover {
     color: #fff;
     cursor: pointer;
+    background: #060606;
 }
 
 .lang-option.last-option {
@@ -448,7 +432,8 @@ input, select {
     width: 710px;
     float: left;
     z-index:100;
-    position: relative;
+    position: absolute;
+    left: 250px;
     background: #f0f0f0;
 }
 
@@ -752,16 +737,6 @@ input, select {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 /********** Hidden menu **********/
 
 #hidden-bottom-menu {
@@ -773,19 +748,6 @@ input, select {
     background: #FFF;
     display: none;
 }
-
-#logo {
-    position: absolute;
-    width: 198px;
-    height: 26px;
-    background: url(../img/MSUV-logo.png) no-repeat;
-    top: 20px;
-    left: 20px;
-}
-
-
-
-
 
 
 
