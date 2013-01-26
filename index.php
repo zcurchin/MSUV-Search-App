@@ -49,9 +49,10 @@ if(!isset($_COOKIE['jezik'])){
         </div>
         
         <div id="lang-menu">
-            <span class="lang-option active" alt="sr">SR</span>
-            <span class="lang-option" alt="en">EN</span>
-            <span class="lang-option" alt="de">DE</span>
+
+            <span class="lang-option <?php if($lang[0]=='sr') echo 'active'; ?>" alt="sr">SR</span>
+            <span class="lang-option <?php if($lang[0]=='en') echo 'active'; ?>" alt="en">EN</span>
+            <span class="lang-option <?php if($lang[0]=='de') echo 'active'; ?>" alt="de">DE</span>
         </div>
 
         <div id="container">
