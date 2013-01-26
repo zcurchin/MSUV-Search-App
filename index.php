@@ -29,7 +29,8 @@ if(!isset($_COOKIE['jezik'])){
         <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
         <link rel="stylesheet" href="css/jquery.selectbox.css">
         <link rel="stylesheet" href="css/shadowbox.css">
-        <link rel="stylesheet" href="videojs/video-js.min.css" />
+        <link rel="stylesheet" href="videojs/video-js.min.css">
+        <link rel="stylesheet" href="css/360-style.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -132,6 +133,7 @@ if(!isset($_COOKIE['jezik'])){
         <script src="videojs/video.min.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/dopelessRotate.js"></script>
 
         <!-- Google Analytics -->
         <!--<script>

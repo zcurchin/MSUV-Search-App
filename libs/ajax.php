@@ -323,7 +323,13 @@ function showDetails(){
 				
 				/* 360 za skulpture */
 				if ($row['extras']==1 && $medij==3){
-					echo '<a class="extra-360"><img id="extra-360" alt="" src="img/360.png"></a>';
+					echo '<a class="extra-360"><img id="extra-360" src="img/360.png"></a>';
+					echo '<div id="overlay-360">
+							<div id="container-360">	
+								<img src="art/360/'.$id.'/01.jpg" id="first-360" alt="'.$id.'" width="433" height="650"/>
+								<span id="close-360"></span>
+							</div> 
+						  </div>';
 				}
 				/* Extra images */
 				for($i=1; $i<20; $i++){

@@ -1,0 +1,126 @@
+.ts_holder {
+	position:relative;
+}
+
+.loading_bg {
+	position:absolute;
+	background: #fff;
+	left:0px;
+	top:0px;
+	display:none;
+}
+
+
+.loading {
+	position:absolute;
+}
+
+.loading p {
+	display: none;
+}
+
+.loading_bar {
+	position:absolute;
+	height:5px;
+	background:#999; 
+}
+
+.loading_bar_inside {
+	height:5px;
+	width:0px;
+	background-color: #111;
+}
+
+.ts_holder.zoomout {
+	cursor: url('zoomout.cur'),default;
+}
+
+.ts_img_view {
+	position:absolute;
+	z-index=1;
+}
+
+.ts_imgzoom_view {
+	position:absolute;
+	z-index=10;
+	display:none;
+}
+
+.zoom {
+	z-index:10;
+	position:absolute;
+	background-image:url(zoomin.png);
+	background-position:0 0;
+	background-repeat:no-repeat;
+	width:30px;
+	height:30px;
+	cursor:pointer;
+	display:none;
+}
+
+.round {
+	position:absolute;
+	top:0;
+	left:-100px;
+	z-index:10;
+	display:none;
+}
+
+.pointer {
+	position:absolute;
+	background:#A5A5A5;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+
+.pointer_object {
+	background:#D8D8D8;
+	position:absolute;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+
+#overlay-360 {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: none;
+  opacity: 0;
+}
+
+#container-360 {
+  margin: 0px auto 0;
+  width: 433px;
+  height: 650px;
+  position: relative;
+  margin-top: 100px;
+  opacity: 0;
+}
+
+#close-360 {
+  width: 40px;
+  height: 40px;
+  background: url(../img/close-360.png) 0 0 no-repeat;
+  position: absolute;
+  top: 23px;
+  right: -40px;
+  display: block;
+  cursor: pointer;  
+}
+
+#close-360:hover {
+	background-position: 0 -40px;
+}
+
+
+
+
+
+
+

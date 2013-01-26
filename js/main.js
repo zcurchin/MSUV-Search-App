@@ -381,7 +381,35 @@ $('.resoults').live('click', function() {
 		        }
 		    });
 
+		    /* Ukoliko postoji potreba za 360 rotacijom */
+		    if($('#extra-360').length){
+		    	
+		    	/* 360 open btn */
+		    	$('#extra-360').click(function(){
+			    	$('#overlay-360').css({'display':'block'}).animate({'opacity':'1'},300);
+					setTimeout(function(){
+						$('#first-360').tsRotate({
+							'zoom':false,
+							'pathtophp':'libs/',
+							'reverse':true,
+							'disablelogo':true
+						});
+						setTimeout(function(){
+							$('#container-360').css({'opacity':'1'});
+						},500);
+							
+					},550);
+		    	});
 
+		    	/* 360 close btn */
+		    	$('#close-360').live('click', function(){
+					$('#overlay-360').animate({'opacity':'0'},300);
+					setTimeout(function(){
+						$('#overlay-360').css({'display':'none'});
+					},350);
+				});
+
+		    }
 		}
 		});
 
