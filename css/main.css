@@ -233,7 +233,7 @@ body {
     position: absolute;
     top: 12px;
     right: 17px;
-    z-index: 1000;
+    z-index: 900;
     text-align: center;
     color: #666;
     font-size: 14px;
