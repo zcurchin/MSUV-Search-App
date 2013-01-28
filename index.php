@@ -113,12 +113,10 @@ if(!isset($_COOKIE['jezik'])){
                     <!--controls-->
                     <div id="close-btn"></div>
                     <div id="back-btn"></div>
-
                     <!--scenes-->
                     <div id="scene-1"></div>
                     <div id="scene-2"></div>
                 </div> 
-
                 <div id="app-container-shadow">            
             </div>
 
@@ -134,7 +132,6 @@ if(!isset($_COOKIE['jezik'])){
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script src="js/dopelessRotate.js"></script>
-
         <!-- Google Analytics -->
         <!--<script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

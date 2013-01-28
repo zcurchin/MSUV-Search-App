@@ -14,7 +14,6 @@ if(isset($_POST['fn'])){
 function setSearchbox(){
 
 	require_once('config.php');
-	
 	$rezultati = $autori = $godine = $zbirke = $tehnike = $mediji = array();
 
 	/* Naslovi */
@@ -126,11 +125,9 @@ function setSearchbox(){
 	<div id="live-search">
 	<span id="live-label">'. $rezultati['naslovi'][6] .'</span><span id="live-score">'. $ukupno .'</span>
 	</div>
-
 	<div id="reset-search" class="clearfix">
 	<span id="reset-label">'.$rezultati['naslovi'][8].'</span><span id="reset-btn"></span>
 	</div>
-
 	<div id="search-btn">
 	<span id="search-btn-icon"></span>
 	<!-- <input id="submit-search-btn" type="submit" value=""> -->
@@ -140,7 +137,6 @@ function setSearchbox(){
 function getResults(){
 	
 	require_once('config.php');
-
 	/* Naslovi */
 	if($_POST['lang'] == 'sr'){
 		$rezultati['naslovi'] = $naslovi['sr'];
@@ -200,11 +196,9 @@ function getResults(){
 					else{
 						if(is_null($row['autor_en_de'])){
 							echo '<span class="author">'.$row['autor'].'</span>';
-						}
-						else{
+						}else{
 							echo '<span class="author">'.$row['autor_en_de'].'</span>';
 						}
-
 					}			
 
 					echo '<span class="title">'.$row['naziv_'.$jezik].'</span>
@@ -235,7 +229,6 @@ function getResults(){
 function countResults(){
 
 	require_once('config.php');
-
 	/* Naslovi */
 	if($_POST['lang']=='sr'){
 		$rezultati['naslovi']=$naslovi['sr'];
@@ -283,7 +276,6 @@ function showDetails(){
 
 	require_once('config.php');
 	$jezik = $_POST['lang'];
-	
 	/* Naslovi */
 	if($jezik == 'sr'){
 		$rezultati['detalji'] = $detalji['sr'];
@@ -316,7 +308,6 @@ function showDetails(){
 				</div> 
 			  </div>';
 		}
-
 		echo '<div id="details-outer"><div id="details"><div id="images-box">';
 		
 		if($medij==6){ 
@@ -326,11 +317,9 @@ function showDetails(){
 			<source type="video/mp4" src="art/video/'.$id.'.mp4">
 			<source type="video/webm" src="art/video/'.$id.'.webm">
 			</video>';
-		}
-		else{	
+		}else{	
 			echo '<div><a id="feat-img" class="feat-img" rel="shadowbox" href="art/master/'. $id .'.jpg"><img id="leading-img" alt="'.$id.'.jpg" src="art/details/'. $id .'.jpg"></a></div>';
 			echo '<div id="more-images">';
-				
 				/* 360 za skulpture */
 				if ($row['extras']==1 && $medij==3){
 					echo '<a class="extra-360"><img id="extra-360" src="img/360.png"></a>';
@@ -343,9 +332,7 @@ function showDetails(){
 				}
 			echo '</div>';
 		}
-
-		echo '
-		</div>
+		echo '</div>
 		<div id="info-box">
 		<div class="info-row">
 		<span class="label">'.$rezultati['detalji'][0].':</span>';
@@ -355,8 +342,7 @@ function showDetails(){
 		}else{
 			if(is_null($row['autor_en_de'])){
 				echo'<span class="info">'.$row['autor'].'</span>';
-			}
-			else{
+			}else{
 				echo'<span class="info">'.$row['autor_en_de'].'</span>';
 			}
 		}
@@ -365,10 +351,8 @@ function showDetails(){
 
 		if(is_null($row['bio_'.$jezik]) == false){
 		
-		$biografija = $row['bio_'.$jezik];
-			
-			echo '
-			<div class="info-row">
+		$biografija = $row['bio_'.$jezik];			
+			echo '<div class="info-row">
 			<span id="bio-label" class="label">'.$rezultati['detalji'][10].' <img src="img/more.png" id="more-text" style="margin-bottom:1px"/></span>
 			<span class="info">
 				<div id="short-bio">'. substr($biografija, 0, 60). ' ...' .'</div>			
@@ -392,8 +376,7 @@ function showDetails(){
 			<span class="label">'.$rezultati['detalji'][4].':</span>';
 			if(!is_null($row['graf_dim_l'])){
 				echo '<span class="info">'. $row['graf_dim_l'] .' cm</span>';
-			}
-			else{
+			}else{
 				echo '<span class="info">-</span>';
 			}
 			echo'</div>
@@ -401,8 +384,7 @@ function showDetails(){
 			<span class="label">'.$rezultati['detalji'][5].':</span>';
 			if(!is_null($row['graf_dim_o'])){
 				echo '<span class="info">'. $row['graf_dim_o'] .' cm</span>';
-			}
-			else{
+			}else{
 				echo '<span class="info">-</span>';
 			}			
 			echo '</div>';
@@ -412,45 +394,33 @@ function showDetails(){
 			<span class="label">'.$rezultati['detalji'][3].':</span>';
 			if(!is_null($row['dim'])){
 				echo '<span class="info">'. $row['dim'] .' cm</span>';
-			}
-			else{
+			}else{
 				echo '<span class="info">-</span>';
-			}
-			
-			
-
+			}				
 			echo '</div>';
-		}
-		elseif($medij==6){
+		}elseif($medij==6){
 			// video
 			echo'<div class="info-row">
 			<span class="label">'.$rezultati['detalji'][9].':</span>
 			<span class="info">'. $row['duzina'] .'</span>
 			</div>';
 		}
-
-		echo'              
-		<div class="info-row">
+		echo'<div class="info-row">
 		<span class="label">'.$rezultati['detalji'][6].':</span>
 		<span class="info">'. $row['zbr_naziv_'.$jezik] .'</span>
 		</div>
 		<div class="info-row">';
 		if($medij == 3){
 			echo '<span class="label">'.$rezultati['detalji'][11].':</span>';
-		}
-		else{
+		}else{
 			echo '<span class="label">'.$rezultati['detalji'][7].':</span>';
-		}
-			
+		}	
 		echo '<span class="info">'. $row['teh_naziv_'.$jezik] .'</span>
 		</div>
 		<div class="info-row last-row">
 		<span class="label">'.$rezultati['detalji'][8].':</span>
 		<span class="info">'. ucfirst($row['med_naziv_'.$jezik.'']) .'</span>
-		</div>
-		</div>
-		</div></div>';
+		</div></div></div></div>';
 	}
-
 }
 ?>

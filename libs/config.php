@@ -29,7 +29,6 @@
 					   'Medien','Werktitel','Gefunden',
 					   'Es wurden keine mit Ihrer Suchanfrage übereinstimmenden Dokumente gefunden.',
 					   'Reset search')
-
 	);
 
 	/* Jezik za detalje */
@@ -46,6 +45,5 @@
 		'de' => array('Der Autor','Werktitel','Jahr','Dimension','Blattdimension',
 					  'Abdruckdimension','Sammlung','Technik','Medien',
 					  'Länge (hh:mm:ss)','Biografie','Material')
-
 	);
 ?>
