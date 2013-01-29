@@ -445,6 +445,7 @@ $(document).ready(function(){
 	getSearchbox();
 	getSizes();
 	setLandingSize();
+	$(document)[0].oncontextmenu=function(){return false;}
 });
 
 $(window).resize(function() {
