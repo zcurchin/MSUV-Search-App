@@ -334,14 +334,18 @@ input, select {
 #reset-label {
     float: left;
     margin: 5px 0 0;
-    font-size: 14px;   
+    font-size: 14px;
+    color: #444;   
 }
 
 #reset-search:hover {
     background: #080808;
     border-color: #222;
     cursor: pointer;
-    color: #444;
+}
+
+#reset-search:hover #reset-label {
+    color: #777;
 }
 
 #reset-search:hover #reset-btn {

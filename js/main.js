@@ -324,7 +324,7 @@ function handleDetails(){
 	    	detailsOuter.animate({'opacity' : '1'}, function(){			    		
 	    		backButton.show();
 	    		closeButton.hide();
-	    		Shadowbox.init({overlayOpacity : 0.9});
+	    		Shadowbox.init({overlayOpacity : 0.9, overlayColor:"#fff"});
 	    		Shadowbox.setup();
 	    		});			    	
 	    },200);
@@ -386,6 +386,7 @@ $('.resoults').live('click', function() {
 		    	
 		    	/* 360 open btn */
 		    	$('#extra-360').click(function(){
+			    	$('#back-btn').css({opacity:0});
 			    	$('#overlay-360').css({'display':'block'}).animate({'opacity':'1'},300);
 					setTimeout(function(){
 						$('#first-360').tsRotate({
@@ -403,6 +404,7 @@ $('.resoults').live('click', function() {
 
 		    	/* 360 close btn */
 		    	$('#close-360').live('click', function(){
+					$('#back-btn').css({opacity:1});
 					$('#overlay-360').animate({'opacity':'0'},300);
 					setTimeout(function(){
 						$('#overlay-360').css({'display':'none'});
