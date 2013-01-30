@@ -95,11 +95,10 @@
 }
 
 #container-360 {
-  margin: 0px auto 0;
+  margin: 0 auto;
   width: 433px;
   height: 650px;
   position: relative;
-  margin-top: 100px;
   opacity: 0;
 }
 

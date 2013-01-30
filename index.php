@@ -117,7 +117,7 @@ if(!isset($_COOKIE['jezik'])){
                     <div id="scene-1"></div>
                     <div id="scene-2"></div>
                 </div> 
-                <div id="app-container-shadow">            
+                <div id="app-container-shadow"></div>           
             </div>
 
         </div>
