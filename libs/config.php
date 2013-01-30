@@ -28,7 +28,7 @@
 		'de' => array('Der Autor','Jahr','Sammlung','Technik',
 					   'Medien','Werktitel','Gefunden',
 					   'Es wurden keine mit Ihrer Suchanfrage übereinstimmenden Dokumente gefunden.',
-					   'Reset search')
+					   'Die Suche abbrechen')
 	);
 
 	/* Jezik za detalje */
