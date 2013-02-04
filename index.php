@@ -1,13 +1,14 @@
 <?php
-if(!isset($_COOKIE['jezik'])){
-    setcookie('jezik','sr');
-    $lang = array('sr','Izbor jezika','Sponzor projekta');
-}else if($_COOKIE['jezik'] == 'sr'){
-    $lang = array('sr','Izbor jezika','Sponzor projekta');
-}else if($_COOKIE['jezik'] == 'en'){
-    $lang = array('en','Language','Sponsors');
-}else if($_COOKIE['jezik'] == 'de'){
-    $lang = array('de','Sprachauswahl','Projektsponsor');
+if(isset($_GET['lang'])){
+    $setlang = $_GET['lang'];
+    if     ($setlang=='sr')setcookie('jezik','sr');
+    else if($setlang=='en') setcookie('jezik','en');
+    else if($setlang=='de') setcookie('jezik','de');
+}else{
+    if(!isset($_COOKIE['jezik'])){   $setlang = 'sr'; setcookie('jezik','sr'); }
+    else if($_COOKIE['jezik']=='sr') $setlang = 'sr';
+    else if($_COOKIE['jezik']=='en') $setlang = 'en';
+    else if($_COOKIE['jezik']=='de') $setlang = 'de';
 }
 ?>
 <!DOCTYPE html>
@@ -23,7 +24,6 @@ if(!isset($_COOKIE['jezik'])){
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="favicon.ico">
-        
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
@@ -36,34 +36,32 @@ if(!isset($_COOKIE['jezik'])){
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
-
         <!-- Application -->
-        
         <a href="index.php"><div id="logo"></div></a>
         <div id="sponsor">
             <span id="sponsor-icon"></span>
-            <p><?php echo $lang[2] ?></p>
+            <p><?php 
+                if($setlang=='sr')      echo 'Sponzor projekta';
+                else if($setlang=='en') echo 'Sponsors';
+                else if($setlang=='de') echo 'Projektsponsor';
+            ?></p>
             <span id="close-sponsors"></span>
         </div>
         <div id="sponsor-bgd">
             <a href="http://www.artmentor.ch/" target="_blank"><span id="sponsor-logo"></span></a>
         </div>
-        
         <div id="lang-menu">
-
-            <span class="lang-option <?php if($lang[0]=='sr') echo 'active'; ?>" alt="sr">SR</span>
-            <span class="lang-option <?php if($lang[0]=='en') echo 'active'; ?>" alt="en">EN</span>
-            <span class="lang-option <?php if($lang[0]=='de') echo 'active'; ?>" alt="de">DE</span>
+            <span class="lang-option <?php if($setlang=='sr') echo 'active'; ?>" alt="sr">SR</span>
+            <span class="lang-option <?php if($setlang=='en') echo 'active'; ?>" alt="en">EN</span>
+            <span class="lang-option <?php if($setlang=='de') echo 'active'; ?>" alt="de">DE</span>
         </div>
 
         <div id="container">
 
             <!-- Application container -->
-            <div id="app-container" class="landing-size">            
-                
+            <div id="app-container" class="landing-size">
                 <!-- Searchbox -->
-                <div id="searchbox"></div>                        
-                
+                <div id="searchbox"></div>
                 <!-- Slider -->
                 <div id="slides">
                     <div class="slides_container">
@@ -107,7 +105,6 @@ if(!isset($_COOKIE['jezik'])){
                     <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
                     <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
                 </div>           
-
                 <!-- Application content -->
                 <div id="app-content">            
                     <!--controls-->
@@ -119,11 +116,9 @@ if(!isset($_COOKIE['jezik'])){
                 </div> 
                 <div id="app-container-shadow"></div>           
             </div>
-
-        </div>
-        
+        </div>       
         <div id="hidden-bottom-menu"></div>
-        
+       
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
         <script src="js/vendor/jquery-ui-1.9.0.custom.min.js"></script>
