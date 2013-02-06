@@ -1,11 +1,11 @@
 <?php
 if(isset($_GET['lang'])){
     $setlang = $_GET['lang'];
-    if     ($setlang=='sr')setcookie('jezik','sr');
+    if     ($setlang=='sr') setcookie('jezik','sr');
     else if($setlang=='en') setcookie('jezik','en');
     else if($setlang=='de') setcookie('jezik','de');
 }else{
-    if(!isset($_COOKIE['jezik'])){   $setlang = 'sr'; setcookie('jezik','sr'); }
+    if(!isset($_COOKIE['jezik'])){   $setlang = 'sr'; setcookie('jezik','sr');}
     else if($_COOKIE['jezik']=='sr') $setlang = 'sr';
     else if($_COOKIE['jezik']=='en') $setlang = 'en';
     else if($_COOKIE['jezik']=='de') $setlang = 'de';

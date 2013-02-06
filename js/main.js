@@ -575,6 +575,7 @@ function prebrojRezultate(){
 
 $('.lang-option').click(function(){
 	document.cookie = "jezik="+ $(this).attr('alt');
+	window.history.pushState("", document.title, window.location.pathname);
 	location.reload();
 });
 
