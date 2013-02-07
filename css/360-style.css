@@ -97,9 +97,10 @@
 #container-360 {
   margin: 0 auto;
   width: 433px;
-  height: 650px;
+  height: 500px;
   position: relative;
   opacity: 0;
+  cursor: pointer;
 }
 
 #close-360 {
