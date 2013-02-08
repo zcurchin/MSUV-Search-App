@@ -884,6 +884,21 @@ input, select {
     }
 }
 
+@media only screen and (max-height: 768px) {
+    #holder_first-360 {
+        margin-top: -80px;
+    }
+
+    #close-360 {
+        margin-top: 100px;
+    }
+
+    div.round {
+        margin-top: 100px;
+    }
+
+}
+
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (min-resolution: 144dpi) {
     /* Style adjustments for high resolution devices */
