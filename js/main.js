@@ -1,4 +1,4 @@
-
+//test comment
 $('html').spin();
 
 // Cache elements selectors in global variables
