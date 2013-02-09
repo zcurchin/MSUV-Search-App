@@ -3,12 +3,12 @@
 	background-color: #060606;
 	border: solid 1px #111;
 	font-family: Arial, sans-serif;
-	font-size: 13px;
+	font-size: 15px;
 	font-weight: normal;
-	height: 35px;
+	height: 45px;
 	position: relative;
-	width: 208px;
-	margin: 0 0 20px 20px;
+	width: 250px;
+	margin: 0 0 20px 24px;
 }
 .sbHolder:focus .sbSelector{
 	
@@ -20,9 +20,9 @@
 
 .sbSelector{
 	display: block;
-	height: 36px;
+	height: 45px;
 	left: 0;
-	line-height: 36px;
+	line-height: 45px;
 	outline: none;
 	overflow: hidden;
 	position: absolute;
@@ -42,7 +42,7 @@
 	outline: none !important;
 	position: absolute;
 	right: 0;
-	top: 2px;
+	top: 7px;
 	width: 30px;
 }
 .sbToggle:hover{
@@ -73,7 +73,7 @@
 	padding: 0;
 	position: absolute;
 	top: 36px;
-	width: 208px;
+	width: 250px;
 	z-index: 1;
 	overflow-y: auto;
 }
@@ -93,7 +93,7 @@
 	border-bottom: dotted 1px #151515;
 	display: block;
 	outline: none;
-	padding: 7px 0 7px 3px;
+	padding: 10px 0 10px 3px;
 }
 .sbOptions a:link, .sbOptions a:visited{
 	color: #666;

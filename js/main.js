@@ -62,7 +62,7 @@ function getSearchbox() {
 	  type: 'POST',
 	  data: {'fn':'setSearchbox','lang':jezik},
 	  success: function(data){
-	  	searchbox.html(data);
+	  	searchbox.html(data);	  	 
 
 	  	var keyword = $('#keyword');
 
@@ -112,6 +112,12 @@ function getSearchbox() {
 			if ($(this).val().length >= 4) prebrojRezultate(); 
 		}, 400);
 
+		(function($){
+			$('#searchbox').keyboard({keyboard: 'qwerty', plugin: 'form'});
+			$('#keyboard').bind('change', function() {
+			$('#searchbox').keyboard('keyboard', $(this).val());
+		})})(jQuery);
+
     }
 	});
 }
@@ -132,13 +138,12 @@ var windowWidth,
 function getSizes() {
     windowWidth = $(window).width();
     windowHeight = $(window).height();
-    appContainerWidth_Ls = 960;
-    appContainerHeight_Ls = 552;
-    appContainerWidth_Fs = windowWidth - 40;
-	appContainerHeight_Fs = windowHeight - 80;
+    appContainerWidth_Ls = 1100;
+    appContainerHeight_Ls = 636;
+    appContainerWidth_Fs = 1520;
+	appContainerHeight_Fs = windowHeight - 120;
 	appContainer_marginTop_Ls = Math.round((windowHeight - appContainerHeight_Ls)/2); 
 	appContainer_marginTop_Fs = 60;
-	//appContainer_marginTop_Fs = (windowWidth > 1600) ? 100 : 60;
 	searchboxWidth = searchbox.width();
 	appContentWidth = (appContainerWidth_Fs - searchboxWidth) - 20;
 	appContentHeight = appContainerHeight_Fs -2;    
@@ -212,8 +217,8 @@ function animateLandingSize(){
 	},400);
 	
 	setTimeout(function(){
-		getSearchbox(); // Another call for searchbox
-		slider.css({'left':'250px'});
+		//getSearchbox(); // Another call for searchbox
+		slider.css({'left':'300px'});		
 	},1000);
 }
 
@@ -303,7 +308,20 @@ $('#search-btn').live('click', function() {
 
 closeButton.click(function() {	
 	animateLandingSize();
-	$(this).hide();		
+	$(this).hide();
+	$('select',searchbox).selectbox("detach");
+	$('select').val(0);
+	$('select', searchbox).selectbox({
+		onChange: function(val, inst){
+			prebrojRezultate();
+		},
+	});
+
+	if     (jezik=='sr') $('#keyword').val(naziv_keyword[0]).css({'color':'#666'});
+	else if(jezik=='en') $('#keyword').val(naziv_keyword[1]).css({'color':'#666'});
+	else if(jezik=='de') $('#keyword').val(naziv_keyword[2]).css({'color':'#666'});
+
+		prebrojRezultate();		
 });
 
 // Function to handle all element in UI after they been returned from server
@@ -447,7 +465,7 @@ $(document).ready(function(){
 	getSearchbox();
 	getSizes();
 	setLandingSize();
-	$(document)[0].oncontextmenu=function(){return false;}
+	//$(document)[0].oncontextmenu=function(){return false;}
 });
 
 $(window).resize(function() {
@@ -591,3 +609,27 @@ function disableEnterKey(e){
      	return true;
      } 
 }
+
+//Vitual keyboard 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

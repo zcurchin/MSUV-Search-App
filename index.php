@@ -31,6 +31,7 @@ if(isset($_GET['lang'])){
         <link rel="stylesheet" href="css/shadowbox.css">
         <link rel="stylesheet" href="videojs/video-js.min.css">
         <link rel="stylesheet" href="css/360-style.css">
+        <link rel="stylesheet" href="css/keyboard.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -48,7 +49,7 @@ if(isset($_GET['lang'])){
             <span id="close-sponsors"></span>
         </div>
         <div id="sponsor-bgd">
-            <a href="http://www.artmentor.ch/" target="_blank"><span id="sponsor-logo"></span></a>
+            <span id="sponsor-logo"></span>
         </div>
         <div id="lang-menu">
             <span class="lang-option <?php if($setlang=='sr') echo 'active'; ?>" alt="sr">SR</span>
@@ -125,8 +126,17 @@ if(isset($_GET['lang'])){
         <script src="js/jquery.mCustomScrollbar.js"></script>
         <script src="videojs/video.min.js"></script>
         <script src="js/plugins.js"></script>
+        <script src="js/dopelessRotate.js"></script> 
+        
+        <script src="js/jquery.keyboard.js"></script>
+        <script src="js/qwerty.js"></script>        
+        <script src="js/form.js"></script>
+        <script src="js/jquery.selection.js"></script>
+        
         <script src="js/main.js"></script>
-        <script src="js/dopelessRotate.js"></script>
+       
+       
+
         <!-- Google Analytics -->
         <!--<script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

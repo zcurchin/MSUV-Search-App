@@ -231,20 +231,19 @@ body {
 
 #lang-menu {
     position: absolute;
-    top: 12px;
-    right: 17px;
+    top: 30px;
+    right: 30px;
     z-index: 900;
     text-align: center;
     color: #666;
-    font-size: 11px;
+    font-size: 14px;
 }
 
 .lang-option {    
     background: #f2f2f2;
-    padding: 10px;
-    margin-right: 5px;
+    padding: 17px;
+    margin-bottom: 5px;
     display: block;
-    float: left;
 }
 
 .lang-option.active {
@@ -267,14 +266,15 @@ body {
 
 #searchbox {
     float: left;    
-    width: 250px;
-    height: 552px;
+    width: 300px;
+    height: 636px;
     background: #060606;
-    z-index: 100;
+    z-index: 1000;
+    position: relative;
 }
 
 form {
-    margin-top: 20px;
+    margin-top: 26px;
 }
 
 input, select {
@@ -287,12 +287,14 @@ input, select {
 }
 
 #keyword {
-    width: 188px;
-    font-size: 13px;
-    height: 35px;
-    line-height: 36px;
+    width: 230px;
+    font-size: 15px;
+    height: 45px;
+    line-height: 45px;
     padding: 0 10px;
     color: #666;
+    margin-left: 24px;
+    outline: none;
 }
 
 #keyword:hover {
@@ -301,7 +303,7 @@ input, select {
 
 #live-search {
     height: 30px;
-    margin: 20px 20px 37px 30px;
+    margin: 20px 20px 37px 34px;
 }
 
 #live-label {
@@ -328,7 +330,7 @@ input, select {
 
 #reset-search {
     border-top: 1px solid #151515;
-    padding: 10px 20px 10px 30px;
+    padding: 10px 20px 10px 34px;
 }
 
 #reset-label {
@@ -366,7 +368,7 @@ input, select {
 
 #search-btn {
     width: 100%;
-    height: 70px;
+    height: 89px;
     border-top: 1px solid #151515;
     position: relative;
     cursor: pointer;
@@ -386,8 +388,8 @@ input, select {
     height: 30px;
     background: url(../img/search-icon.png) 0 0 no-repeat;
     position: absolute;
-    top: 19px;
-    left: 111px;
+    top: 28px;
+    left: 136px;
     cursor: pointer;
 }
 
@@ -433,12 +435,12 @@ input, select {
 =================================================*/
 
 #slides {
-    height: 552px;
-    width: 710px;
+    height: 636px;
+    width: 800px;
     float: left;
     z-index:100;
     position: absolute;
-    left: 250px;
+    left: 300px;
     background: #f0f0f0;
 }
 
@@ -447,8 +449,8 @@ input, select {
 }
 
 .slide img {
-    width: 710px;
-    height: 552px;
+    width: 800px;
+    height: 636px;
 }
 
 /*
@@ -459,8 +461,8 @@ input, select {
 */
 
 .slides_container {
-    width:710px;
-    height: 552px;
+    width: 800px;
+    height: 636px;
     overflow:hidden;
     position:relative;
     display:none;
@@ -475,8 +477,8 @@ input, select {
 */
 
 .slides_container div.slide {
-    width:710px;
-    height:552px;
+    width: 800px;
+    height: 636px;
     display:block;
 }
 
@@ -493,10 +495,11 @@ input, select {
     height:43px;
     display:block;
     z-index:101;
+    padding: 0 10px;
 }
 
 #slides .prev {
-    right:40px;
+    right:70px;
 }
 
 /*
@@ -546,7 +549,7 @@ input, select {
     padding: 0 20px;
     background: #000;
     background: rgba(0,0,0,.5);
-    width: 670px;
+    width: 800px;
     font-size: 14px;
     line-height: 40px;
     color:#fff;
@@ -878,26 +881,6 @@ input, select {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-height: 800px) {
-    #container-360 {
-        margin-top: 40px !important;
-    }
-}
-
-@media only screen and (max-height: 768px) {
-    #holder_first-360 {
-        margin-top: -80px;
-    }
-
-    #close-360 {
-        margin-top: 100px;
-    }
-
-    div.round {
-        margin-top: 100px;
-    }
-
-}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (min-resolution: 144dpi) {
