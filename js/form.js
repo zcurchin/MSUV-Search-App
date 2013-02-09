@@ -45,6 +45,10 @@
 		});
 		e.keyboard('bind', 'release', function(e, o) {
 			if(input !== null) {
+
+				/* Broj pronađenih rezultata */
+				if ($('#keyword').val().length >= 4) prebrojRezultate();
+
 				//	Tabulation
 				if(o.key.name === 'tab') {
 					if(o.cap) {

@@ -103,20 +103,15 @@ function getSearchbox() {
 			if     (jezik=='sr') $('#keyword').val(naziv_keyword[0]).css({'color':'#666'});
 			else if(jezik=='en') $('#keyword').val(naziv_keyword[1]).css({'color':'#666'});
 			else if(jezik=='de') $('#keyword').val(naziv_keyword[2]).css({'color':'#666'});
-
 			prebrojRezultate();
 		});
-
-		/* Pretraga tokom kucanja */
-		$(keyword).bindWithDelay("keydown", function(){
-			if ($(this).val().length >= 4) prebrojRezultate(); 
-		}, 400);
 
 		(function($){
 			$('#searchbox').keyboard({keyboard: 'qwerty', plugin: 'form'});
 			$('#keyboard').bind('change', function() {
-			$('#searchbox').keyboard('keyboard', $(this).val());
-		})})(jQuery);
+				$('#searchbox').keyboard('keyboard', $(this).val());
+			})
+		})(jQuery);
 
     }
 	});
