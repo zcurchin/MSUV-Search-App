@@ -38,7 +38,7 @@ if(isset($_GET['lang'])){
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
         <!-- Application -->
-        <a href="http://msuv.org/"><div id="logo"></div></a>
+        <div id="logo"></div>
         <div id="sponsor">
             <span id="sponsor-icon"></span>
             <p><?php 
