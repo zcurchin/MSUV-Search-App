@@ -376,7 +376,7 @@ function showDetails(){
 		else 						 echo '<span class="info">-</span></div>';
 		
 		if($medij==1){
-			//grafika
+			// dimenzije za grafiku
 			echo'<div class="info-row">
 			<span class="label">'.$rezultati['detalji'][4].':</span>';
 			if(!is_null($row['graf_dim_l'])){
@@ -393,8 +393,16 @@ function showDetails(){
 				echo '<span class="info">-</span>';
 			}			
 			echo '</div>';
-		}elseif($medij==2 || $medij==3 || $medij==4 || $medij==5 || $medij==8){ 
-			// slika, skulptura, crtež, fotografija
+		}
+		elseif($medij==6){
+			// dužina trajanja za video
+			echo'<div class="info-row">
+			<span class="label">'.$rezultati['detalji'][9].':</span>
+			<span class="info">'. $row['duzina'] .'</span>
+			</div>';
+		}
+		else{ 
+			// dimenzije za sve ostale kategorije
 			echo'<div class="info-row">
 			<span class="label">'.$rezultati['detalji'][3].':</span>';
 			if(!is_null($row['dim'])){
@@ -403,12 +411,6 @@ function showDetails(){
 				echo '<span class="info">-</span>';
 			}				
 			echo '</div>';
-		}elseif($medij==6){
-			// video
-			echo'<div class="info-row">
-			<span class="label">'.$rezultati['detalji'][9].':</span>
-			<span class="info">'. $row['duzina'] .'</span>
-			</div>';
 		}
 		echo'<div class="info-row">
 		<span class="label">'.$rezultati['detalji'][6].':</span>
