@@ -318,7 +318,7 @@ function showDetails(){
 		if($medij==6){ 
 		// video
 			echo '
-			<video id="video" class="video-js vjs-default-skin" controls width="450" height="338" preload="auto" loop data-setup="{}">
+			<video id="video" class="video-js vjs-default-skin" controls width="450" height="338" preload="auto" loop data-setup="{}" poster="art/details/'.$id.'.jpg">
 			<source type="video/mp4" src="art/video/'.$id.'.mp4">
 			<source type="video/webm" src="art/video/'.$id.'.webm">
 			</video>';
@@ -330,7 +330,7 @@ function showDetails(){
 					echo '<a class="extra-360"><img id="extra-360" src="img/360.png"></a>';
 				}
 				/* Extra images */
-				for($i=1; $i<20; $i++){
+				for($i=1; $i<40; $i++){
 					if(file_exists($art_path .'/master/'.$id.'-'.$i.'.jpg')){
 						echo '<a class="extra-img"><img id="extra-img" alt="'.$id.'-'.$i.'.jpg" src="art/thumbnail/'.$id.'-'.$i.'.jpg"></a>';
 					}
